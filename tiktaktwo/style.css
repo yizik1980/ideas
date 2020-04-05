@@ -1,0 +1,133 @@
+/** @format */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+:root {
+  --full-width: 100vw;
+  --full-height: 100vh;
+  --width: 100px;
+}
+body {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: var(--full-width);
+  height: var(--full-height);
+}
+button {
+  border: none;
+  mask-type: luminance;
+  -webkit-appearance: slider-vertical;
+  padding: 2%;
+  box-shadow: 0.1px 1px 3px 0.1px #888;
+  outline: none;
+  border-radius: 5px;
+  background: hsla(200, 66%, 52%, 0.72);
+}
+.frame {
+  display: grid;
+  grid-template-columns: repeat(2, var(--width)) var(--width);
+}
+.frame .cube {
+  border: 1px solid #000;
+  width: var(--width);
+  height: var(--width);
+}
+.frame .cube:nth-of-type(n - 6) {
+  border-top: none;
+}
+.frame .cube:nth-of-type(n + 7) {
+  border-bottom: none;
+}
+
+.frame .cube:nth-of-type(3n),
+.frame .cube:nth-of-type(3n + 1) {
+  border-left: none;
+  border-right: none;
+}
+.frame .cube.x,
+.frame .cube.o,
+.frame .cube:hover {
+  perspective: 100px;
+  perspective-origin: var(--full-width);
+  position: relative;
+}
+.frame .cube.x::after,
+.frame .cube.x::before,
+.frame.x .cube:not(.o):not(.x):hover:before,
+.frame.x .cube:not(.o):not(.x):hover::after {
+  content: "";
+  height: calc(var(--width) * 0.9);
+  width: 20px;
+  position: absolute;
+  top: 5%;
+  display: block;
+  background-color: rgba(22, 66, 88, 1);
+  left: calc(var(--width) * 0.4);
+}
+.frame.x .cube:not(.o):not(.x):hover:before,
+.frame.x .cube:not(.o):not(.x):hover::after {
+  background-color: rgba(22, 66, 88, 0.31);
+}
+
+.frame .cube.x::after,
+.frame.x .cube:not(.o):hover::after {
+  transform: rotateZ(-45deg);
+}
+.frame .cube.x::before,
+.frame.x .cube:not(.o):hover:before {
+  transform: rotateZ(45deg);
+}
+.frame .cube.o::after,
+.frame.o .cube:not(.o):not(.x):hover::after {
+  content: "";
+  display: block;
+  border-radius: 50%;
+  border: 20px solid rgba(22, 66, 88, 1);
+  width: calc(var(--width) * 0.9);
+  height: calc(var(--width) * 0.9);
+  position: absolute;
+  left: 5%;
+  top: 5%;
+}
+.frame.o .cube:not(.o):not(.x):hover::after {
+  border: 20px solid rgba(22, 66, 88, 0.31);
+}
+.dialog {
+  direction: rtl;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: var(--full-width);
+  height: var(--full-height);
+  position: fixed;
+  z-index: 2;
+  background-color: rgba(22, 66, 88, 1);
+}
+.dialog .container {
+  background-color: #fff;
+  padding: 2%;
+  width: 50vw;
+  height: 50vh;
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.dialog .container h2 {
+  flex-grow: 4;
+}
+.dialog .container button {
+}
