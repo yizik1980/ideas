@@ -1,0 +1,167 @@
+/** @format */
+
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+:root {
+  --full-width: 100vw;
+  --full-height: 100vh;
+  --width: 40px;
+  --height: 40px;
+  --frame-width: 400px;
+  --frame-height: 400px;
+}
+body {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: var(--full-width);
+  height: var(--full-height);
+}
+button {
+  border: none;
+  mask-type: luminance;
+  -webkit-appearance: slider-vertical;
+  padding: 2%;
+  box-shadow: 0.1px 1px 3px 0.1px #888;
+  outline: none;
+  border-radius: 5px;
+  background: hsla(200, 66%, 52%, 0.72);
+}
+.frame {
+  height: var(--frame-width);
+  width: var(--frame-height);
+  display: block;
+  position: relative;
+}
+.frame .cube {
+  font-size: 0.6em;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  border-width: 0.2px;
+  width: var(--width);
+  height: var(--height);
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.border-top {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  height: 1px;
+  background-color: black;
+  width: 100%;
+}
+.border-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0px;
+  height: 1px;
+  background-color: black;
+  width: 100%;
+}
+.border-right {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: calc(100% - var(--height));
+  background-color: black;
+  width: 1px;
+}
+.border-left {
+  position: absolute;
+  top: var(--height);
+  left: -1px;
+  height: calc(100% - var(--height));
+  background-color: black;
+  width: 1px;
+}
+.b-top:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0px;
+  height: 1px;
+  background-color: black;
+  width: 100%;
+}
+.b-left::before {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: -1px;
+  width: 1px;
+  background-color: black;
+  height: 100%;
+}
+.b-right:before {
+  content: "";
+  position: absolute;
+  top: 0%;
+  right: 0px;
+  width: 1px;
+  background-color: black;
+  height: 100%;
+}
+.b-bottom:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  height: 1px;
+  background-color: black;
+  width: 100%;
+}
+.marked {
+  border: none;
+}
+.marked:after,
+.marked::before {
+  content: unset;
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,6 +1,6 @@
 /** @format */
 class Step {
-  constructor(i, name) {
+  constructor(i) {
     let fType = ["b-bottom", "b-right"];
     let lType = ["b-top", "b-right"];
     let lastType = ["b-top", "b-left"];
@@ -13,10 +13,14 @@ class Step {
     this.cube = document.createElement("div");
     this.x = Math.floor(i / 10);
     this.y = i % 10;
+    this.isRightSide = this.x === 9;
+    this.isLeftSide = this.x === 0;
+    this.isTopSide = this.y === 0;
+    this.isBottomSide = this.y === 9;
     this.cube.title = `x: ${this.x} y: ${this.y}`;
     let className;
 
-    if (this.x == 0) {
+    if (this.isLeftSide) {
       if (this.y == 0) {
         //className = " ";
       } else if (this.y == 9) {
@@ -24,7 +28,7 @@ class Step {
       } else {
         className = toptypes[Math.floor(Math.random() * toptypes.length)];
       }
-    } else if (this.x == 9) {
+    } else if (this.isBottomSide) {
       if (this.y == 0) {
         className = lType[Math.floor(Math.random() * 2)];
       } else if (this.y == 9) {
@@ -32,32 +36,24 @@ class Step {
       } else {
         className = bottomtypes[Math.floor(Math.random() * bottomtypes.length)];
       }
-    } else if (this.y == 0) {
+    } else if (this.isTopSide) {
       className = leftTypes[Math.floor(Math.random() * leftTypes.length)];
-    } else if (this.y == 9) {
+    } else if (this.isBottomSide) {
       className = rightTypes[Math.floor(Math.random() * rightTypes.length)];
     } else {
       className = types[Math.floor(Math.random() * types.length)];
     }
-    this.cube.classList.add(name);
+    this.cube.classList.add(className);
   }
 }
-class direction {
-  constructor(steps, dir) {
-    this.steps = steps;
-    this.dir = dir;
-  }
-}
+
 class labiranet {
   constructor() {
     this.cubes = [];
     this.path = [];
     this.frame = document.querySelector(".frame");
-    let types = ["b-top", "b-bottom", "b-left", "b-right"];
     for (let i = 0; i < 100; i++) {
-      const name = types[i % 4];
-      console.log(i % 4);
-      const stepCube = new Step(i, name);
+      const stepCube = new Step(i);
       this.frame.appendChild(stepCube.cube);
       this.cubes.push(stepCube);
     }
@@ -66,26 +62,38 @@ class labiranet {
     let current = this.start;
     current.cube.classList.add("marked");
     while (current != this.last) {
-      if (current.x == 9) {
-        current = this.findStep(current.x, current.y + 1);
-      } else if (current.y == 9) {
+      let rand = Math.floor(Math.random() * 2);
+      if (current.isLeftSide) {
         current = this.findStep(current.x + 1, current.y);
+      } else if (current.isRightSide) {
+        current = this.findStep(current.x, current.y + 1);
+      } else if (current.isTopSide) {
+        current = this.findStep(current.x, current.y + 1);
       } else {
-        let rand = Math.floor(Math.random() * 2);
         if (rand) {
           current = this.findStep(current.x, current.y + 1);
         } else {
           current = this.findStep(current.x + 1, current.y);
         }
       }
-      current.cube.classList.add("marked");
+      if (current.message) {
+        console.log(current.message);
+        break;
+      } else {
+        current.cube.classList.add("marked");
+      }
     }
   }
+
   findStep(x, y) {
     //  if (step instanceof Step)
-    return this.cubes.filter((v) => {
+    const filtered = this.cubes.filter((v) => {
       return x == v.x && y == v.y;
-    })[0];
+    });
+    if (filtered.length > 0) {
+      return filtered[0];
+    }
+    return { message: "exit on" + x + " " + y };
     // }
   }
 }
