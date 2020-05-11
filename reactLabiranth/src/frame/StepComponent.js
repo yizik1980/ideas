@@ -5,13 +5,21 @@ export default class StepUi extends React.Component {
   constructor(props) {
     super(props);
     //console.log(props);
-    this.state = props.step;
+    this.state = {};
+    this.state.step = props.step;
+    this.setCube = this.setCube.bind(this);
+  }
+  setCube() {
+    this.state.step.setStep();
+    this.setState({});
   }
   render() {
     return (
-      <div className={this.state.classSet} title={this.state.title}>
-        {`${this.state.x},${this.state.y}`}
-      </div>
+      <div
+        onClick={this.setCube}
+        className={this.state.step.classSet}
+        title={this.state.step.title}
+      ></div>
     );
   }
 }

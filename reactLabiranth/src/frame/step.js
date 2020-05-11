@@ -11,13 +11,20 @@ export default class Step {
     this.isTopSide = this.x === 0;
     this.isLeftSide = this.y === 0;
     this.title = `x:${this.x},y:${this.y}`;
+    this.markedCube = false;
   }
   init(prevClass) {
     let types = ["b-top", "b-bottom", "b-left", "b-right"];
-    this.prevClass =
-      types[Math.floor(Math.random() * types.length)] +
-      " " +
-      types[Math.floor(Math.random() * types.length)];
+    this.prevClass = types[Math.floor(Math.random() * types.length)];
     this.classSet = `${this.prevClass} cube `;
+  }
+  setStep() {
+    console.log(this);
+    this.markedCube = !this.markedCube;
+    if (this.markedCube) {
+      this.classSet += " steped";
+    } else {
+      this.classSet = this.classSet.replace(/\s+steped/g, "");
+    }
   }
 }

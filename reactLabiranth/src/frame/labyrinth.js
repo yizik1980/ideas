@@ -1,10 +1,10 @@
 /** @format */
 
-import React from "react";
+import React, { Component } from "react";
 import Step from "./step";
 import StepUi from "./StepComponent";
 
-export default class Labyrinth extends React.Component {
+export default class Labyrinth extends Component {
   cubes = [];
   componentWillMount() {
     let ends, current;
@@ -27,11 +27,9 @@ export default class Labyrinth extends React.Component {
 
       if (rand && diving > 0) {
         diving--;
-        console.log("diving:" + diving);
         current = this.findStep(current.x + 1, current.y);
       } else if (left > 0) {
         left--;
-        console.log("left:" + left);
         current = this.findStep(current.x, current.y + 1);
       }
       if (current.message) {
@@ -39,7 +37,6 @@ export default class Labyrinth extends React.Component {
         break;
       } else {
         current.classSet += " marked";
-        // console.log(current.classSet);
       }
     }
 

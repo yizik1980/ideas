@@ -127,6 +127,9 @@ button {
 .marked::before {
   content: unset;
 }
+.steped {
+  background-color: chartreuse;
+}
 .App {
   text-align: center;
 }
@@ -155,13 +158,4 @@ button {
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
