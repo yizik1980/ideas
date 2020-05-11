@@ -7,14 +7,14 @@ import Calendar from "./calendar/Calendar";
 import * as fireBase from "firebase";
 import Popup from "./popup/Popup";
 const firebaseConfig = {
-  apiKey: "AIzaSyBVTENQnCiMNxX-JBGlpp8gPLu2VI4fLTk",
-  authDomain: "tutrial-1493211707260.firebaseapp.com",
-  databaseURL: "https://tutrial-1493211707260.firebaseio.com",
-  projectId: "tutrial-1493211707260",
-  storageBucket: "tutrial-1493211707260.appspot.com",
-  messagingSenderId: "873204913850",
-  appId: "1:873204913850:web:86d2450e92d5af23a99483",
-  measurementId: "G-FGJE0GLF9N",
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+  measurementId: "",
 };
 fireBase.initializeApp(firebaseConfig);
 class App extends Component {
