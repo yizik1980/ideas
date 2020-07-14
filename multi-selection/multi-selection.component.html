@@ -1,0 +1,19 @@
+<div class="select-option" [ngClass]="{'open':show}">
+    <span class="tringle" (click)="open()"></span>
+    <div class="wrap-items">
+        <aside class="item" *ngFor="let item of selectedOptions">
+            <b title="{{item.text}}" (click)="open()">{{item.text}}</b>
+            <s (click)="removeItem(item)" class="remove">x</s>
+        </aside>
+        <div (click)="open()" *ngIf="selectedOptions.length == 0" class="first"><b>לחץ לבחירת מוצרים</b></div>
+    </div>
+    <div class="back-tap" (click)="close()"></div>
+    <dl *ngIf="show">
+        <dd (click)="selectAll()" [ngClass]="{selected:selectedAll}">
+            {{text}}
+        </dd>
+        <dd *ngFor="let item of options" (click)="select(item)" [ngClass]="{selected:item.selected}">
+            {{item.text}}
+        </dd>
+    </dl>
+</div>

@@ -1,0 +1,116 @@
+:root {
+  --back: #bd6666;
+}
+
+.select-option {
+  padding: 0 3px;
+  position: relative;
+  background: #fff;
+  font-weight: 700;
+  margin: 0 0 0px;
+  border-radius: 3px;
+  text-decoration: none;
+  min-height: 35px;
+  box-shadow: 0 0 0 0.7px #696767;
+  display: block;
+  width: 206px;
+  .wrap-items {
+    display: flex;
+    justify-content: right;
+    flex: 1;
+    aside {
+      padding: 1px 0;
+      background: #ccc;
+      margin-left: 2px;
+      text-align: center;
+      z-index: 4;
+      border-radius: 5px;
+      position: relative;
+      font-size: 10px;
+      height: 28px;
+      width: 20%;
+      margin-top: 2px;
+      b {
+        padding: 1px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        height: 100%;
+        display: block;
+      }
+      s {
+        text-align: center;
+        padding: 0px 4px 1px 4px;
+        color: #f9f9f8;
+        background: #bb8b16;
+        position: absolute;
+        top: -10px;
+        left: -4px;
+        border-radius: 40%;
+        cursor: pointer;
+        font-style: normal;
+        font-size: 11px;
+      }
+    }
+    .first {
+      padding: 7px 4px 0 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.select-option.open {
+  opacity: 1;
+  z-index: 5;
+  border: rgb(29, 28, 28);
+  dl {
+    margin: 0;
+    width: 100%;
+    border: 1px solid rgba(105, 103, 103, 0.71);
+    border-top: none;
+    position: absolute;
+    top: 37px;
+    right: -1px;
+    dd {
+      padding: 12px 13px;
+      margin: 0;
+      background: #eee;
+      position: relative;
+      &:hover {
+        background: #ccc;
+      }
+      &:after {
+        position: absolute;
+        left: 15px;
+        font-size: 0.91em;
+        color: #00a8d3;
+      }
+    }
+    dd.selected {
+      background: #bb8b16;
+    }
+  }
+}
+
+.select-option .tringle {
+  top: 12px;
+  left: 13px;
+}
+
+.select-option.open dl dd.hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 800px), (orientation: landscape) and (max-width: 1200px) and (min-width: 1000px) {
+  .select-option {
+    margin-left: 0;
+    margin-right: 9%;
+    .wrap-items {
+      aside {
+        s {
+          display: inline-block;
+          width: auto;
+        }
+      }
+    }
+  }
+}
