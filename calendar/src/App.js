@@ -1,15 +1,16 @@
 /** @format */
 
 import React from "react";
-import "./App.css";
-//import Labyrinth from "./frame/labyrinth";
-import Calendar from "./calendar/Calendar";
+import Layout from "./layout/layout";
+import Home from "./layout/home";
+import "./style.css";
+
 
 function App() {
   return (
-    <div className="banga">
-      {/* <Labyrinth></Labyrinth> */}
-      <Calendar></Calendar>
+    <div className="container flex center">
+      <Home></Home>
+      <Layout></Layout>
     </div>
   );
 }

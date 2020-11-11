@@ -7,7 +7,7 @@ import "./calendar.css";
 
 export default class Calendar extends Component {
   constructor(props) {
-    super(props);
+   // super(props);
     this.currentDateTime = new Date();
     this.daysOftheMonth = [];
     this.state = {
