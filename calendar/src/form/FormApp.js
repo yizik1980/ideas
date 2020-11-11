@@ -11,7 +11,9 @@ export default class FormApp extends React.Component {
                classApprove:"squaredOne"
            }
         }
-    
+        submitForm(){
+           this.handleChange();
+        }
         handleValidation(){
             let fields = this.state.fields;
             let errors = {};
@@ -80,55 +82,55 @@ export default class FormApp extends React.Component {
                           <fieldset>
                               <div className="flex">
                             <div className="input">
-                               <input ref="name" type="text"  placeholder="*שם פרטי" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]}/>
+                               <input  type="text"  placeholder="*שם פרטי" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]}/>
                                <span >{this.state.errors["name"]}</span>
                             </div>
 
                         <div className="input">
-                               <input ref="last" type="text"  placeholder="*שם משפחה" onChange={this.handleChange.bind(this, "last")} value={this.state.fields["last"]}/>
+                               <input  type="text"  placeholder="*שם משפחה" onChange={this.handleChange.bind(this, "last")} value={this.state.fields["last"]}/>
                                <span >{this.state.errors["last"]}</span>
                             </div>
                               </div>
                                 <div className="flex">
                             <div className="input">
-                             <input refs="phone" type="text"  placeholder="*נייד" onChange={this.handleChange.bind(this, "phone")} value={this.state.fields["phone"]}/>
+                             <input  type="text"  placeholder="*נייד" onChange={this.handleChange.bind(this, "phone")} value={this.state.fields["phone"]}/>
                              <span >{this.state.errors["phone"]}</span>
                                 </div>
                               </div>
                                    <div className="flex">
                             <div className="input">
-                             <input refs="email" type="text"  placeholder="*מייל" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]}/>
+                             <input type="text"  placeholder="*מייל" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]}/>
                              <span >{this.state.errors["email"]}</span>
                         </div>
                               </div>
                            <div className="flex">
                             <div className="input two-third">
-                             <input refs="address" type="text"  placeholder="*רחוב" onChange={this.handleChange.bind(this, "address")} value={this.state.fields["address"]}/>
+                             <input  type="text"  placeholder="*רחוב" onChange={this.handleChange.bind(this, "address")} value={this.state.fields["address"]}/>
                              <span >{this.state.errors["address"]}</span>
                         </div>
                            <div className="input third">
-                             <input refs="homeNumber" type="number"  placeholder="*מס' בית" onChange={this.handleChange.bind(this, "homeNumber")} value={this.state.fields["homeNumber"]}/>
+                             <input  type="number"  placeholder="*מס' בית" onChange={this.handleChange.bind(this, "homeNumber")} value={this.state.fields["homeNumber"]}/>
                              <span >{this.state.errors["homeNumber"]}</span>
                         </div>
                               </div>
                                <div className="flex">
                             <div className="input">
-                             <input refs="city" type="text"  placeholder="*עיר" onChange={this.handleChange.bind(this, "city")} value={this.state.fields["city"]}/>
+                             <input  type="text"  placeholder="*עיר" onChange={this.handleChange.bind(this, "city")} value={this.state.fields["city"]}/>
                              <span >{this.state.errors["address"]}</span>
                         </div>
                            <div className="input">
-                             <input refs="zipcode" type="number"  placeholder="מיקוד" onChange={this.handleChange.bind(this, "zipcode")} value={this.state.fields["zipcode"]}/>
+                             <input  type="number"  placeholder="מיקוד" onChange={this.handleChange.bind(this, "zipcode")} value={this.state.fields["zipcode"]}/>
                              <span >{this.state.errors["homeNumber"]}</span>
                         </div>
                               </div>
                          </fieldset>
                          <div className="checkbox">
                            <div className={this.state.classApprove} onClick={this.checkButtonClick.bind(this)}>
-                              <label for="squaredOne"></label>
+                              <label ></label>
                            </div>
                            <span>אני מאשר/ת את קריאת התקנון ומסירת הפרטים למאגר הצרכנים של פארמלוג'ק, בהתאם למדיניות הפרטיות לקבלת הטבות, מבצעים ועדכונים מפארמלוג'יק ו/או מחברות הקשורות עימה עסקית, בכל אחד מערוצי התקשורת.</span>
                          </div>
-                         <div role="button" className="submit-button" > להרשמה וקבלת דוגמית  </div>
+                         <button role="button" className="submit-button" onClick={this.submitForm.bind(this)} > להרשמה וקבלת דוגמית  </button>
                       </div>
                 </div>
           )

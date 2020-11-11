@@ -8,7 +8,8 @@ import "./style.css";
 
 function App() {
   return (
-    <div className="container flex center">
+    <div className="container relative flex center">
+    <div className="pack"></div>
       <Home></Home>
       <Layout></Layout>
     </div>
