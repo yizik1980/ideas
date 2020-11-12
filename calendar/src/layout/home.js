@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from "./Logo";
 
 
 function Home() {
@@ -6,6 +7,7 @@ function Home() {
 
     return (
         <div className="main relative">
+            <Logo></Logo>
               <div className="right-side">
         <h2>הפכנו את כדור המגנזיום לגרגירים</h2>
         <h1>כדי שתיקחו את זה בקלות</h1>

@@ -35,42 +35,42 @@ export default class FormApp extends React.Component {
             let errors = {};
             let placeHolderColor = {};
             if(!this.state.fields.name){
-               errors.name = ' השם חסר ';
+               errors.name = ' השם חסר *';
                placeHolderColor.name = true;
                flag = false;
             }
              if(!this.state.fields.last){
-               errors.last = ' משפחה חסר ';
+               errors.last = ' משפחה חסר *';
                placeHolderColor.last = true;
                flag = false;
             }
             if(!this.state.fields.phone){
-               errors.phone = ' נייד חסר ';
+               errors.phone = ' נייד חסר *';
                placeHolderColor.phone = true;
                flag = false;
             }
              if(!this.state.fields.address){
-               errors.address = ' השם חסר ';
+               errors.address = ' השם חסר *';
                placeHolderColor.address = true;
                flag = false;
             }
             if(!this.state.fields.email){
-               errors.email = 'פרטי מייל חסר ';
+               errors.email = 'פרטי מייל חסר *';
                placeHolderColor.email = true;
                flag = false;
             }
             if(!this.state.fields.city){
-               errors.city = 'פרטי עיר חסר ';
+               errors.city = 'פרטי עיר חסר *';
                placeHolderColor.city = true;
                flag = false;
             }
              if(!this.state.fields.homeNumber){
-               errors.homeNumber = 'פרטי מספר בית חסר ';
+               errors.homeNumber = 'פרטי מספר בית חסר *';
                placeHolderColor.homeNumber = true;
                flag = false;
             }
              if(!this.state.approved){
-               errors.approved = 'לא אישרת  ';
+               errors.approved = 'לא אישרת  *';
                flag = false;
             }
             this.setState({errors,placeHolderColor});
@@ -88,7 +88,6 @@ export default class FormApp extends React.Component {
          const approved = !this.state.approved;
          const classApprove = approved? this.state.classApprove +' checked': this.state.classApprove.replace('checked','')
          this.setState({approved,classApprove});
-
         }
         render(){
             return (
