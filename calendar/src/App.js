@@ -5,15 +5,19 @@ import Layout from "./layout/layout";
 import Home from "./layout/home";
 import "./style.css";
 
+export default class App extends React.Component{
+  constructor(props){
+    super(props);
+  }
 
-function App() {
-  return (
+  render(){
+    return(
     <div className="container relative flex center">
     <div className="pack"></div>
       <Home></Home>
       <Layout></Layout>
     </div>
-  );
+    );
+  }
 }
 
-export default App;
