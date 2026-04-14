@@ -1,0 +1,106 @@
+.select-screen {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+  color: #4a2c8c;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.section {
+  margin-bottom: 1.8rem;
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+  }
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.avatar-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover { border-color: #9c6fde; background: #f3eeff; }
+  &.selected { border-color: #4a2c8c; background: #ede0ff; }
+}
+
+.avatar-emoji { font-size: 2.2rem; }
+.avatar-label { font-size: 0.8rem; color: #555; margin-top: 0.25rem; }
+
+.name-input {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  direction: rtl;
+  box-sizing: border-box;
+
+  &:focus { border-color: #4a2c8c; }
+}
+
+.difficulty-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+.diff-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background: #fafafa;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.15s;
+
+  input[type='radio'] { display: none; }
+  &:hover { border-color: #9c6fde; background: #f3eeff; }
+  &.selected { border-color: #4a2c8c; background: #ede0ff; font-weight: 600; }
+}
+
+.start-btn {
+  display: block;
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: #4a2c8c;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover:not(:disabled) { background: #6a3dbf; }
+  &:disabled { background: #aaa; cursor: not-allowed; }
+}

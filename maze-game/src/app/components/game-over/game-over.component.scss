@@ -1,0 +1,119 @@
+.over-screen {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.result-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(74, 44, 140, 0.15);
+  width: 100%;
+}
+
+.trophy { font-size: 3.5rem; }
+
+h1 {
+  font-size: 2rem;
+  color: #4a2c8c;
+  margin: 0.5rem 0 1rem;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+
+  .avatar { font-size: 1.8rem; }
+  .name { font-weight: 700; }
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 0.2rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  &.gold { color: #c9a600; }
+}
+
+// ── Leaderboard ────────────────────────────────────────────────────────────────
+.leaderboard {
+  width: 100%;
+
+  h2 {
+    font-size: 1.2rem;
+    color: #4a2c8c;
+    margin-bottom: 0.75rem;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(74, 44, 140, 0.1);
+}
+
+th, td {
+  padding: 0.65rem 0.9rem;
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+th {
+  background: #4a2c8c;
+  color: white;
+  font-weight: 600;
+}
+
+tr:nth-child(even) { background: #f8f4ff; }
+
+tr.highlight td {
+  background: #fffbe6;
+  font-weight: 700;
+}
+
+.score-cell { color: #c9a600; font-weight: 700; }
+
+.again-btn {
+  padding: 0.85rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: #4a2c8c;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover { background: #6a3dbf; }
+}

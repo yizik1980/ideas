@@ -1,0 +1,58 @@
+<div class="select-screen" dir="rtl">
+  <h1 class="title">🌀 מבוך הידע</h1>
+  <p class="subtitle">בחר אווטר, הכנס שם ובחר רמת קושי</p>
+
+  <section class="section">
+    <h2>בחר אווטר</h2>
+    <div class="avatar-grid">
+      @for (a of avatars; track a.id) {
+        <button
+          class="avatar-btn"
+          [class.selected]="selectedAvatar.id === a.id"
+          (click)="selectAvatar(a)"
+          type="button"
+        >
+          <span class="avatar-emoji">{{ a.emoji }}</span>
+          <span class="avatar-label">{{ a.label }}</span>
+        </button>
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>שם השחקן</h2>
+    <input
+      class="name-input"
+      type="text"
+      [(ngModel)]="playerName"
+      placeholder="הכנס שם..."
+      maxlength="20"
+    />
+  </section>
+
+  <section class="section">
+    <h2>רמת קושי</h2>
+    <div class="difficulty-grid">
+      @for (d of difficulties; track d.value) {
+        <label class="diff-btn" [class.selected]="difficulty === d.value">
+          <input
+            type="radio"
+            name="difficulty"
+            [value]="d.value"
+            [(ngModel)]="difficulty"
+          />
+          {{ d.label }}
+        </label>
+      }
+    </div>
+  </section>
+
+  <button
+    class="start-btn"
+    [disabled]="!playerName.trim()"
+    (click)="startGame()"
+    type="button"
+  >
+    התחל משחק 🚀
+  </button>
+</div>

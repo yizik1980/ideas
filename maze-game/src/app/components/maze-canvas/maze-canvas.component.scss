@@ -1,0 +1,124 @@
+.game-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  min-height: 100vh;
+  background: #f0eaff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.hud {
+  display: flex;
+  gap: 2rem;
+  background: #4a2c8c;
+  color: white;
+  border-radius: 14px;
+  padding: 0.6rem 2rem;
+  margin-bottom: 1rem;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hud-label {
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
+
+.hud-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  &.score { color: #ffd700; }
+}
+
+.canvas-wrapper {
+  border: 3px solid #4a2c8c;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(74, 44, 140, 0.2);
+
+  canvas {
+    display: block;
+    outline: none;
+  }
+}
+
+.hint {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+// ── Modal ──────────────────────────────────────────────────────────────────────
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background: white;
+  border-radius: 18px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+  transition: background 0.3s;
+
+  &.correct { background: #e6ffed; }
+  &.wrong   { background: #fff0f0; }
+}
+
+.modal-fruit {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #4a2c8c;
+  margin-bottom: 1rem;
+}
+
+.question-text {
+  font-size: 1.15rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+  color: #222;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.answer-btn {
+  padding: 0.65rem 0.5rem;
+  border: 2px solid #4a2c8c;
+  border-radius: 10px;
+  background: #fafafa;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: #222;
+
+  &:hover { background: #ede0ff; }
+}
+
+.points-hint {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.result-msg {
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 1rem 0;
+}

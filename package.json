@@ -1,0 +1,12 @@
+{
+  "name": "maze-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "start": "npm --workspace=apps/maze-game run start",
+    "build": "npm --workspace=apps/maze-game run build"
+  }
+}

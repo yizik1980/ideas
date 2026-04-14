@@ -1,0 +1,56 @@
+<div class="over-screen" dir="rtl">
+  <div class="result-card">
+    <div class="trophy">🏆</div>
+    <h1>כל הכבוד!</h1>
+    <div class="player-info">
+      <span class="avatar">{{ lastResult()?.avatarEmoji }}</span>
+      <span class="name">{{ lastResult()?.playerName }}</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-label">ניקוד סופי</span>
+        <span class="stat-value gold">{{ lastResult()?.score }}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">זמן</span>
+        <span class="stat-value">{{ formatTime(lastResult()?.timeSeconds ?? 0) }}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">רמת קושי</span>
+        <span class="stat-value">{{ diffLabel(lastResult()?.difficulty ?? 'gan') }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="leaderboard">
+    <h2>🏅 לוח תוצאות</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>שחקן</th>
+          <th>ניקוד</th>
+          <th>זמן</th>
+          <th>רמה</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of topResults(); track r.id; let i = $index) {
+          <tr [class.highlight]="r.id === lastResult()?.id">
+            <td>{{ i + 1 }}</td>
+            <td>{{ r.avatarEmoji }} {{ r.playerName }}</td>
+            <td class="score-cell">{{ r.score }}</td>
+            <td>{{ formatTime(r.timeSeconds) }}</td>
+            <td>{{ diffLabel(r.difficulty) }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <button class="again-btn" (click)="playAgain()" type="button">
+    🔄 שחק שוב
+  </button>
+</div>

@@ -1,0 +1,52 @@
+<div class="game-wrapper" dir="rtl">
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-item">
+      <span class="hud-label">שחקן</span>
+      <span class="hud-value">{{ config()?.avatar?.emoji }} {{ config()?.playerName }}</span>
+    </div>
+    <div class="hud-item">
+      <span class="hud-label">ניקוד</span>
+      <span class="hud-value score">{{ score() }}</span>
+    </div>
+    <div class="hud-item">
+      <span class="hud-label">זמן</span>
+      <span class="hud-value">{{ formatTime(elapsedSeconds()) }}</span>
+    </div>
+  </div>
+
+  <!-- Canvas -->
+  <div class="canvas-wrapper">
+    <canvas #mazeCanvas tabindex="0"></canvas>
+  </div>
+
+  <p class="hint">השתמש בחצי המקלדת לניווט · אסוף 🍎 לשאלות טריוויה · הגע ל-🏁</p>
+
+  <!-- Trivia Modal -->
+  @if (activeQuestion()) {
+    <div class="modal-backdrop">
+      <div class="modal" [class.correct]="answerResult() === 'correct'" [class.wrong]="answerResult() === 'wrong'">
+        <div class="modal-fruit">🍎 שאלת טריוויה</div>
+
+        @if (answerResult() === null) {
+          <p class="question-text">{{ activeQuestion()!.question }}</p>
+          <div class="answers">
+            @for (ans of activeQuestion()!.answers; track $index) {
+              <button class="answer-btn" (click)="answerQuestion($index)" type="button">
+                {{ ans }}
+              </button>
+            }
+          </div>
+          <p class="points-hint">תשובה נכונה = {{ activeQuestion()!.points }} נקודות</p>
+        }
+
+        @if (answerResult() === 'correct') {
+          <div class="result-msg">✅ כל הכבוד! +{{ activeQuestion()!.points }} נקודות</div>
+        }
+        @if (answerResult() === 'wrong') {
+          <div class="result-msg">❌ לא נכון. התשובה: {{ activeQuestion()!.answers[activeQuestion()!.correctIndex] }}</div>
+        }
+      </div>
+    </div>
+  }
+</div>
