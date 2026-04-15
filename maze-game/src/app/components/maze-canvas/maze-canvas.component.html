@@ -20,7 +20,17 @@
     <canvas #mazeCanvas tabindex="0"></canvas>
   </div>
 
-  <p class="hint">השתמש בחצי המקלדת לניווט · אסוף 🍎 לשאלות טריוויה · הגע ל-🏁</p>
+  <p class="hint">מקלדת / החלק אצבע / לחץ על החצים · אסוף 🍎 · הגע ל-🏁</p>
+
+  <!-- D-pad for mobile -->
+  <div class="dpad">
+    <button class="dpad-btn" (click)="tryMove(-1, 0, 'top')"    type="button">▲</button>
+    <div class="dpad-row">
+      <button class="dpad-btn" (click)="tryMove(0, -1, 'left')"  type="button">◀</button>
+      <button class="dpad-btn" (click)="tryMove(0,  1, 'right')" type="button">▶</button>
+    </div>
+    <button class="dpad-btn" (click)="tryMove( 1, 0, 'bottom')" type="button">▼</button>
+  </div>
 
   <!-- Trivia Modal -->
   @if (activeQuestion()) {

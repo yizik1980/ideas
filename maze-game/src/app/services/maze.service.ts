@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Cell, Difficulty, Fruit, MAZE_CONFIG, TriviaQuestion } from '../models';
 import { TriviaService } from './trivia.service';
+import { COLS_AND_ROWS, FRUIT_COUNTS } from '../const/grid';
 
 @Injectable({ providedIn: 'root' })
 export class MazeService {
-  constructor(private trivia: TriviaService) {}
+  constructor(private trivia: TriviaService) { }
 
   generate(difficulty: Difficulty): { grid: Cell[][]; fruits: Fruit[] } {
-    const { rows, cols, fruits: fruitCount } = MAZE_CONFIG[difficulty];
+    const { rows, cols } = COLS_AND_ROWS;
+    const fruitCount = FRUIT_COUNTS;
     const grid = this.buildGrid(rows, cols);
+
     this.carve(grid, 0, 0);
     const fruits = this.placeFruits(grid, rows, cols, fruitCount, difficulty);
     return { grid, fruits };
@@ -33,9 +36,9 @@ export class MazeService {
 
     const dirs = this.shuffle([
       { dr: -1, dc: 0, from: 'bottom', to: 'top' },
-      { dr: 1,  dc: 0, from: 'top',    to: 'bottom' },
-      { dr: 0,  dc: -1, from: 'right', to: 'left' },
-      { dr: 0,  dc: 1,  from: 'left',  to: 'right' },
+      { dr: 1, dc: 0, from: 'top', to: 'bottom' },
+      { dr: 0, dc: -1, from: 'right', to: 'left' },
+      { dr: 0, dc: 1, from: 'left', to: 'right' },
     ]);
 
     for (const { dr, dc, from, to } of dirs) {

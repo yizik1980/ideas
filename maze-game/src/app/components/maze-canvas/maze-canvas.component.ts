@@ -15,8 +15,9 @@ import { DbService } from '../../services/db.service';
 import { GameStateService } from '../../services/game-state.service';
 import { MazeService } from '../../services/maze.service';
 import { TriviaService } from '../../services/trivia.service';
+import { COLS_AND_ROWS } from '../../const/grid';
 
-const CELL_SIZES: Record<string, number> = {
+const MAX_CELL_SIZES: Record<string, number> = {
   gan: 72, '1-2': 56, '3-4': 44, '5-6': 36,
 };
 
@@ -55,6 +56,8 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
   private cols = 0;
   private timerInterval: ReturnType<typeof setInterval> | null = null;
   private inputBlocked = false;
+  private touchStartX = 0;
+  private touchStartY = 0;
 
   ngOnInit(): void {
     if (!this.config()) {
@@ -62,15 +65,14 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
     const diff = this.config()!.difficulty;
-    const { rows, cols } = MAZE_CONFIG[diff];
+    const { rows, cols } = COLS_AND_ROWS;
     this.rows = rows;
     this.cols = cols;
-    this.cellSize = CELL_SIZES[diff] ?? 50;
+    this.computeCellSize();
 
     const { grid, fruits } = this.mazeService.generate(diff);
     this.grid = grid;
     this.fruits = fruits;
-
     this.timerInterval = setInterval(() => {
       this.elapsedSeconds.update(s => s + 1);
     }, 1000);
@@ -85,24 +87,60 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.timerInterval) clearInterval(this.timerInterval);
   }
 
+  private computeCellSize(): void {
+    const diff = this.config()!.difficulty;
+    const maxFromDiff = MAX_CELL_SIZES[diff] ?? 50;
+    const availW = window.innerWidth - 32;
+    const availH = window.innerHeight - 220; // HUD + hint + dpad
+    const cellFromScreen = Math.floor(Math.min(availW / this.cols, availH / this.rows));
+    this.cellSize = Math.min(maxFromDiff, Math.max(16, cellFromScreen));
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    if (!this.grid.length) return;
+    this.computeCellSize();
+    this.resizeCanvas();
+    this.draw();
+  }
+
+  @HostListener('window:touchstart', ['$event'])
+  onTouchStart(e: TouchEvent): void {
+    this.touchStartX = e.touches[0].clientX;
+    this.touchStartY = e.touches[0].clientY;
+  }
+
+  @HostListener('window:touchend', ['$event'])
+  onTouchEnd(e: TouchEvent): void {
+    const dx = e.changedTouches[0].clientX - this.touchStartX;
+    const dy = e.changedTouches[0].clientY - this.touchStartY;
+    if (Math.abs(dx) < 30 && Math.abs(dy) < 30) return;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      this.tryMove(0, dx > 0 ? 1 : -1, dx > 0 ? 'right' : 'left');
+    } else {
+      this.tryMove(dy > 0 ? 1 : -1, 0, dy > 0 ? 'bottom' : 'top');
+    }
+  }
+
   @HostListener('window:keydown', ['$event'])
   onKey(e: KeyboardEvent): void {
-    if (this.inputBlocked || this.activeQuestion()) return;
     type WallKey = keyof Cell['walls'];
     const moves: Record<string, [number, number, WallKey]> = {
-      ArrowUp:    [-1,  0, 'top'    as WallKey],
-      ArrowDown:  [ 1,  0, 'bottom' as WallKey],
-      ArrowLeft:  [ 0, -1, 'left'   as WallKey],
-      ArrowRight: [ 0,  1, 'right'  as WallKey],
+      ArrowUp:    [-1,  0, 'top'],
+      ArrowDown:  [ 1,  0, 'bottom'],
+      ArrowLeft:  [ 0, -1, 'left'],
+      ArrowRight: [ 0,  1, 'right'],
     };
     const move = moves[e.key];
     if (!move) return;
     e.preventDefault();
+    this.tryMove(...move);
+  }
 
-    const [dr, dc, wall] = move;
+  tryMove(dr: number, dc: number, wall: keyof Cell['walls']): void {
+    if (this.inputBlocked || this.activeQuestion()) return;
     const cell = this.grid[this.playerRow][this.playerCol];
-    if (cell.walls[wall]) return; // blocked by wall
-
+    if (cell.walls[wall]) return;
     this.playerRow += dr;
     this.playerCol += dc;
     this.draw();
