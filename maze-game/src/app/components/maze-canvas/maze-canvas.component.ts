@@ -10,7 +10,7 @@ import {
   signal,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cell, Fruit, MAZE_CONFIG, TriviaQuestion } from '../../models';
+import { Cell, Fruit, TriviaQuestion } from '../../models';
 import { DbService } from '../../services/db.service';
 import { GameStateService } from '../../services/game-state.service';
 import { MazeService } from '../../services/maze.service';
@@ -18,7 +18,7 @@ import { TriviaService } from '../../services/trivia.service';
 import { COLS_AND_ROWS } from '../../const/grid';
 
 const MAX_CELL_SIZES: Record<string, number> = {
-  gan: 72, '1-2': 56, '3-4': 44, '5-6': 36,
+  gan: 72, '1-2': 56, '3-4': 44, '5-6': 36, '7-8': 30, '9-10': 26, '11-12': 26, university: 26,
 };
 
 @Component({
@@ -70,7 +70,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     this.cols = cols;
     this.computeCellSize();
 
-    const { grid, fruits } = this.mazeService.generate(diff);
+    const { grid, fruits } = this.mazeService.generate(diff, this.config()!.category);
     this.grid = grid;
     this.fruits = fruits;
     this.timerInterval = setInterval(() => {

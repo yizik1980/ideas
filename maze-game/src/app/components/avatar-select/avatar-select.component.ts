@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AVATARS, Avatar, Difficulty, DIFFICULTY_LABELS } from '../../models';
+import { AVATARS, Avatar, Difficulty, DIFFICULTY_LABELS, TriviaCategory } from '../../models';
 import { GameStateService } from '../../services/game-state.service';
 
 @Component({
@@ -19,12 +19,22 @@ export class AvatarSelectComponent {
   selectedAvatar: Avatar = AVATARS[0];
   playerName = '';
   difficulty: Difficulty = 'gan';
+  category: TriviaCategory = 'math';
 
   difficulties: { value: Difficulty; label: string }[] = [
-    { value: 'gan',  label: DIFFICULTY_LABELS['gan'] },
-    { value: '1-2',  label: DIFFICULTY_LABELS['1-2'] },
-    { value: '3-4',  label: DIFFICULTY_LABELS['3-4'] },
-    { value: '5-6',  label: DIFFICULTY_LABELS['5-6'] },
+    { value: 'gan',        label: DIFFICULTY_LABELS['gan'] },
+    { value: '1-2',        label: DIFFICULTY_LABELS['1-2'] },
+    { value: '3-4',        label: DIFFICULTY_LABELS['3-4'] },
+    { value: '5-6',        label: DIFFICULTY_LABELS['5-6'] },
+    { value: '7-8',        label: DIFFICULTY_LABELS['7-8'] },
+    { value: '9-10',       label: DIFFICULTY_LABELS['9-10'] },
+    { value: '11-12',      label: DIFFICULTY_LABELS['11-12'] },
+    { value: 'university', label: DIFFICULTY_LABELS['university'] },
+  ];
+
+  categories: { value: TriviaCategory; label: string; emoji: string }[] = [
+    { value: 'math',    label: 'מתמטיקה', emoji: '🔢' },
+    { value: 'science', label: 'מדע',     emoji: '🔬' },
   ];
 
   selectAvatar(a: Avatar): void {
@@ -37,6 +47,7 @@ export class AvatarSelectComponent {
       playerName: this.playerName.trim(),
       avatar: this.selectedAvatar,
       difficulty: this.difficulty,
+      category: this.category,
     });
     this.router.navigate(['/game']);
   }

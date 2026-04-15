@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Cell, Difficulty, Fruit, MAZE_CONFIG, TriviaQuestion } from '../models';
+import { Cell, Difficulty, Fruit, TriviaCategory } from '../models';
 import { TriviaService } from './trivia.service';
 import { COLS_AND_ROWS, FRUIT_COUNTS } from '../const/grid';
 
@@ -7,13 +7,13 @@ import { COLS_AND_ROWS, FRUIT_COUNTS } from '../const/grid';
 export class MazeService {
   constructor(private trivia: TriviaService) { }
 
-  generate(difficulty: Difficulty): { grid: Cell[][]; fruits: Fruit[] } {
+  generate(difficulty: Difficulty, category: TriviaCategory): { grid: Cell[][]; fruits: Fruit[] } {
     const { rows, cols } = COLS_AND_ROWS;
     const fruitCount = FRUIT_COUNTS;
     const grid = this.buildGrid(rows, cols);
 
     this.carve(grid, 0, 0);
-    const fruits = this.placeFruits(grid, rows, cols, fruitCount, difficulty);
+    const fruits = this.placeFruits(rows, cols, fruitCount, difficulty, category);
     return { grid, fruits };
   }
 
@@ -61,13 +61,13 @@ export class MazeService {
   }
 
   private placeFruits(
-    grid: Cell[][],
     rows: number,
     cols: number,
     count: number,
-    difficulty: Difficulty
+    difficulty: Difficulty,
+    category: TriviaCategory
   ): Fruit[] {
-    const questions = this.trivia.getRandomQuestions(difficulty, count);
+    const questions = this.trivia.getRandomQuestions(difficulty, category, count);
     const positions: { row: number; col: number }[] = [];
 
     while (positions.length < count) {

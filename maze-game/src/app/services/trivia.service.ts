@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Difficulty, TriviaQuestion } from '../models';
+import { Difficulty, TriviaCategory, TriviaQuestion } from '../models';
 
 const QUESTIONS: TriviaQuestion[] = [
   // ===== גן =====
@@ -89,20 +89,104 @@ const QUESTIONS: TriviaQuestion[] = [
   { id: 78, difficulty: '5-6', category: 'science', points: 1, question: 'מה תהליך הפוטוסינתזה מייצר?',     answers: ['CO₂ + מים', 'גלוקוז + חמצן', 'חנקן + מים', 'אלכוהול'], correctIndex: 1 },
   { id: 79, difficulty: '5-6', category: 'math',    points: 1, question: 'כמה זה sin(90°)?',                answers: ['0', '0.5', '1', '√2/2'],                   correctIndex: 2 },
   { id: 80, difficulty: '5-6', category: 'science', points: 1, question: 'מה חוק אוהם?',                    answers: ['V=IR', 'P=mv', 'F=ma', 'E=mc²'],           correctIndex: 0 },
+
+  // ===== ז-ח =====
+  { id:  81, difficulty: '7-8', category: 'math',    points: 1, question: 'פתור: 2x + 6 = 14',                              answers: ['2', '3', '4', '5'],                                     correctIndex: 2 },
+  { id:  82, difficulty: '7-8', category: 'math',    points: 1, question: 'מה שיפוע הישר y = -3x + 2?',                     answers: ['-3', '2', '3', '-2'],                                   correctIndex: 0 },
+  { id:  83, difficulty: '7-8', category: 'math',    points: 1, question: 'כמה זה (-4)²?',                                  answers: ['-16', '-8', '8', '16'],                                 correctIndex: 3 },
+  { id:  84, difficulty: '7-8', category: 'math',    points: 1, question: 'מה שטח משולש עם בסיס 8 וגובה 5?',               answers: ['13', '20', '40', '80'],                                 correctIndex: 1 },
+  { id:  85, difficulty: '7-8', category: 'math',    points: 1, question: 'כמה זה 3² + 4²?',                                answers: ['14', '25', '49', '7'],                                  correctIndex: 1 },
+  { id:  86, difficulty: '7-8', category: 'math',    points: 1, question: 'מה ה-LCM של 6 ו-9?',                             answers: ['3', '18', '27', '54'],                                  correctIndex: 1 },
+  { id:  87, difficulty: '7-8', category: 'math',    points: 1, question: 'פשט: (x²·x³)',                                   answers: ['x⁵', 'x⁶', '2x⁵', 'x'],                               correctIndex: 0 },
+  { id:  88, difficulty: '7-8', category: 'math',    points: 1, question: 'כמה אלכסונים למצולע עם 6 קודקודים?',            answers: ['6', '9', '12', '15'],                                   correctIndex: 1 },
+  { id:  89, difficulty: '7-8', category: 'math',    points: 1, question: 'מה היחס בין היקף לקוטר?',                       answers: ['e', 'π', '√2', '2'],                                    correctIndex: 1 },
+  { id:  90, difficulty: '7-8', category: 'math',    points: 1, question: 'כמה זה 0.25 × 0.4?',                             answers: ['0.01', '0.1', '0.6', '1'],                              correctIndex: 1 },
+  { id:  91, difficulty: '7-8', category: 'science', points: 1, question: 'מה הסמל הכימי של ברזל?',                        answers: ['Br', 'Fe', 'Fr', 'Ir'],                                 correctIndex: 1 },
+  { id:  92, difficulty: '7-8', category: 'science', points: 1, question: 'כמה אלקטרונים בשכבה הראשונה של אטום?',          answers: ['2', '4', '8', '18'],                                    correctIndex: 0 },
+  { id:  93, difficulty: '7-8', category: 'science', points: 1, question: 'מה ה-DNA עשוי ממנו?',                            answers: ['חומצות אמינו', 'נוקלאוטידים', 'שומנים', 'פחמימות'],    correctIndex: 1 },
+  { id:  94, difficulty: '7-8', category: 'science', points: 1, question: 'מה חוק שימור האנרגיה?',                         answers: ['אנרגיה נוצרת מחום', 'אנרגיה לא נברא ולא נאבד', 'אנרגיה = מסה', 'אנרגיה = כוח × זמן'], correctIndex: 1 },
+  { id:  95, difficulty: '7-8', category: 'science', points: 1, question: 'מה האיבר שמייצר אינסולין?',                    answers: ['כבד', 'כליה', 'לבלב', 'ריאה'],                          correctIndex: 2 },
+  { id:  96, difficulty: '7-8', category: 'science', points: 1, question: 'מה ההבדל בין תא חיידקי לתא יוקריוטי?',         answers: ['גודל', 'יש/אין גרעין', 'צבע', 'מספר כרומוזומים'],       correctIndex: 1 },
+  { id:  97, difficulty: '7-8', category: 'science', points: 1, question: 'כמה ניוטון שווה 1 קילוגרם-כוח בקירוב?',        answers: ['1', '9.8', '100', '980'],                               correctIndex: 1 },
+  { id:  98, difficulty: '7-8', category: 'science', points: 1, question: 'מה הסמל הכימי של נתרן?',                       answers: ['N', 'Na', 'Ne', 'Nt'],                                  correctIndex: 1 },
+  { id:  99, difficulty: '7-8', category: 'science', points: 1, question: 'מה תפקיד כדוריות הדם הלבנות?',                 answers: ['נשיאת חמצן', 'הגנה מפני מחלות', 'קרישת דם', 'עיכול'], correctIndex: 1 },
+  { id: 100, difficulty: '7-8', category: 'science', points: 1, question: 'מה סוג הגל של אור?',                            answers: ['גל מכני', 'גל אורך', 'גל אלקטרומגנטי', 'גל קול'],       correctIndex: 2 },
+
+  // ===== ט-י =====
+  { id: 101, difficulty: '9-10', category: 'math',    points: 1, question: 'פתור: x² - 5x + 6 = 0',                        answers: ['x=1,6', 'x=2,3', 'x=-2,-3', 'x=3,4'],                  correctIndex: 1 },
+  { id: 102, difficulty: '9-10', category: 'math',    points: 1, question: 'מה הנגזרת של x³?',                             answers: ['x²', '3x', '3x²', 'x⁴/4'],                             correctIndex: 2 },
+  { id: 103, difficulty: '9-10', category: 'math',    points: 1, question: 'מה cos(0°)?',                                  answers: ['0', '0.5', '1', '√2/2'],                                correctIndex: 2 },
+  { id: 104, difficulty: '9-10', category: 'math',    points: 1, question: 'כמה זה log₂(64)?',                             answers: ['4', '5', '6', '8'],                                     correctIndex: 2 },
+  { id: 105, difficulty: '9-10', category: 'math',    points: 1, question: 'מה שטח המעגל כאשר r=5?',                      answers: ['10π', '20π', '25π', '50π'],                             correctIndex: 2 },
+  { id: 106, difficulty: '9-10', category: 'math',    points: 1, question: 'מה ערך sin(30°)?',                             answers: ['0', '√3/2', '1/2', '1'],                                correctIndex: 2 },
+  { id: 107, difficulty: '9-10', category: 'math',    points: 1, question: 'פשט: (a+b)²',                                  answers: ['a²+b²', 'a²+ab+b²', 'a²+2ab+b²', '2a+2b'],            correctIndex: 2 },
+  { id: 108, difficulty: '9-10', category: 'math',    points: 1, question: 'מה האינטגרל של 2x?',                           answers: ['2', 'x²+C', '2x²+C', 'x+C'],                           correctIndex: 1 },
+  { id: 109, difficulty: '9-10', category: 'math',    points: 1, question: 'כמה זה 5P2 (פרמוטציה)?',                      answers: ['10', '20', '60', '120'],                                correctIndex: 1 },
+  { id: 110, difficulty: '9-10', category: 'math',    points: 1, question: 'מה ה-GCD של 48 ו-36?',                        answers: ['6', '9', '12', '18'],                                   correctIndex: 2 },
+  { id: 111, difficulty: '9-10', category: 'science', points: 1, question: 'מה מספר אבוגדרו?',                             answers: ['6.02×10²¹', '6.02×10²³', '6.02×10²⁵', '6.02×10²⁷'],   correctIndex: 1 },
+  { id: 112, difficulty: '9-10', category: 'science', points: 1, question: 'מה חוק ניוטון השני?',                          answers: ['F=mv', 'F=ma', 'F=m/a', 'F=m²a'],                      correctIndex: 1 },
+  { id: 113, difficulty: '9-10', category: 'science', points: 1, question: 'מה הגז שנוצר בריאות שחרור?',                  answers: ['O₂', 'N₂', 'CO₂', 'H₂'],                               correctIndex: 2 },
+  { id: 114, difficulty: '9-10', category: 'science', points: 1, question: 'מה סוג הקשר בין Na ל-Cl ב-NaCl?',             answers: ['קוולנטי', 'יוני', 'מטאלי', 'ואן דר ואלס'],             correctIndex: 1 },
+  { id: 115, difficulty: '9-10', category: 'science', points: 1, question: 'כמה אנרגיה יש לפוטון עם תדר f? (h=קבוע פלאנק)', answers: ['hf²', 'h/f', 'hf', 'h+f'],                           correctIndex: 2 },
+  { id: 116, difficulty: '9-10', category: 'science', points: 1, question: 'מהו תהליך המיטוזה?',                           answers: ['חלוקת תא ל-4', 'חלוקת תא ל-2 זהות', 'איחוד תאים', 'גדילת תא'], correctIndex: 1 },
+  { id: 117, difficulty: '9-10', category: 'science', points: 1, question: 'מה הגדרת מומנט כוח?',                         answers: ['F×t', 'F×d', 'F/d', 'F×v'],                             correctIndex: 1 },
+  { id: 118, difficulty: '9-10', category: 'science', points: 1, question: 'איזה חלקיק נושא מטען שלילי?',                 answers: ['פרוטון', 'נויטרון', 'אלקטרון', 'פוזיטרון'],            correctIndex: 2 },
+  { id: 119, difficulty: '9-10', category: 'science', points: 1, question: 'מה הנוסחה לאנרגיה קינטית?',                   answers: ['mgh', '½mv²', 'Fd', 'mv'],                              correctIndex: 1 },
+  { id: 120, difficulty: '9-10', category: 'science', points: 1, question: 'מה ה-pH של חומצה חזקה?',                      answers: ['0-2', '4-6', '7', '8-10'],                              correctIndex: 0 },
+
+  // ===== י״א-י״ב =====
+  { id: 121, difficulty: '11-12', category: 'math',    points: 1, question: 'מה הגבול: lim(x→∞) 1/x?',                    answers: ['1', '∞', '0', 'לא קיים'],                               correctIndex: 2 },
+  { id: 122, difficulty: '11-12', category: 'math',    points: 1, question: 'מה הנגזרת של eˣ?',                            answers: ['eˣ⁻¹', 'eˣ', 'xeˣ', '1/eˣ'],                           correctIndex: 1 },
+  { id: 123, difficulty: '11-12', category: 'math',    points: 1, question: 'מה האינטגרל ∫sin(x)dx?',                     answers: ['cos(x)+C', '-cos(x)+C', 'sin(x)+C', '-sin(x)+C'],       correctIndex: 1 },
+  { id: 124, difficulty: '11-12', category: 'math',    points: 1, question: 'מה מספר ה-e בקירוב?',                         answers: ['2.14', '2.72', '3.14', '1.62'],                         correctIndex: 1 },
+  { id: 125, difficulty: '11-12', category: 'math',    points: 1, question: 'כמה זה C(10,3)?',                             answers: ['30', '60', '120', '720'],                               correctIndex: 2 },
+  { id: 126, difficulty: '11-12', category: 'math',    points: 1, question: 'מה ה-determinant של מטריצה [[1,2],[3,4]]?',   answers: ['-2', '2', '-1', '10'],                                  correctIndex: 0 },
+  { id: 127, difficulty: '11-12', category: 'math',    points: 1, question: 'מה הנגזרת של ln(x)?',                         answers: ['ln(x)', '1/x', 'x/ln(x)', 'eˣ'],                       correctIndex: 1 },
+  { id: 128, difficulty: '11-12', category: 'math',    points: 1, question: 'מה תנאי התכנסות הסדרה הגיאומטרית?',          answers: ['|q|>1', '|q|=1', '|q|<1', 'q>0'],                      correctIndex: 2 },
+  { id: 129, difficulty: '11-12', category: 'math',    points: 1, question: 'מה ערך tan(45°)?',                            answers: ['0', '√3/2', '√3', '1'],                                 correctIndex: 3 },
+  { id: 130, difficulty: '11-12', category: 'math',    points: 1, question: 'כמה פתרונות ל: x² = -4 ב-ℝ?',               answers: ['0', '1', '2', '4'],                                     correctIndex: 0 },
+  { id: 131, difficulty: '11-12', category: 'science', points: 1, question: 'מה עקרון אי הוודאות של הייזנברג?',            answers: ['אי אפשר לדעת מיקום ומהירות במדויק בו-זמנית', 'אנרגיה לא נשמרת', 'מהירות האור קבועה', 'חומר מורכב מגלים'], correctIndex: 0 },
+  { id: 132, difficulty: '11-12', category: 'science', points: 1, question: 'מה ה-Kw של מים ב-25°C?',                    answers: ['10⁻⁷', '10⁻¹⁰', '10⁻¹⁴', '10⁻²¹'],                    correctIndex: 2 },
+  { id: 133, difficulty: '11-12', category: 'science', points: 1, question: 'מה חוק פאראדיי הראשון?',                     answers: ['V=IR', 'כמות החומר שמשקע שווה לזרם × זמן', 'F=qE', 'E=-dΦ/dt'], correctIndex: 1 },
+  { id: 134, difficulty: '11-12', category: 'science', points: 1, question: 'מה תהליך המיוזה מייצר?',                     answers: ['תאים זהים', 'תאי מין עם חצי כרומוזומים', 'חלבונים', 'תאי גזע'], correctIndex: 1 },
+  { id: 135, difficulty: '11-12', category: 'science', points: 1, question: 'מה קבוע פלאנק (h) בקירוב?',                  answers: ['6.63×10⁻³⁴ J·s', '6.63×10⁻²⁴ J·s', '9.11×10⁻³¹ kg', '1.6×10⁻¹⁹ C'], correctIndex: 0 },
+  { id: 136, difficulty: '11-12', category: 'science', points: 1, question: 'מה מהירות קול באוויר בקירוב?',               answers: ['340 מ/ש', '3000 מ/ש', '30,000 מ/ש', '300 מ/ש'],          correctIndex: 0 },
+  { id: 137, difficulty: '11-12', category: 'science', points: 1, question: 'מה ה-EMF?',                                  answers: ['כוח אלקטרומוטורי', 'כוח מגנטי', 'אנרגיה מגנטית', 'תדר'],  correctIndex: 0 },
+  { id: 138, difficulty: '11-12', category: 'science', points: 1, question: 'מה הגדרת האנטרופיה?',                        answers: ['סדר מערכת', 'מדד לאי-סדר', 'אנרגיה פוטנציאלית', 'לחץ חלקי'], correctIndex: 1 },
+  { id: 139, difficulty: '11-12', category: 'science', points: 1, question: 'מה הגן הדומיננטי?',                           answers: ['גן שמתבטא רק בהומוזיגוט', 'גן שמתבטא גם בהטרוזיגוט', 'גן רצסיבי', 'גן על כרומוזום X'], correctIndex: 1 },
+  { id: 140, difficulty: '11-12', category: 'science', points: 1, question: 'מה חוק קירכהוף לזרמים (KCL)?',              answers: ['סכום הזרמים בצומת = 0', 'סכום המתחים במסלול = 0', 'V=IR', 'P=IV'], correctIndex: 0 },
+
+  // ===== אוניברסיטה =====
+  { id: 141, difficulty: 'university', category: 'math',    points: 1, question: 'מה הגבול: lim(x→0) sin(x)/x?',             answers: ['0', '∞', '1', 'לא קיים'],                                correctIndex: 2 },
+  { id: 142, difficulty: 'university', category: 'math',    points: 1, question: 'מה טרנספורם פורייה של f(t)=δ(t)?',          answers: ['0', '1', 'e^jω', '1/jω'],                                correctIndex: 1 },
+  { id: 143, difficulty: 'university', category: 'math',    points: 1, question: 'מה תנאי קושי-רימן לפונקציה אנליטית?',        answers: ['f רציפה', '∂u/∂x=∂v/∂y, ∂u/∂y=-∂v/∂x', 'f גזירה פעם אחת', 'f חסומה'], correctIndex: 1 },
+  { id: 144, difficulty: 'university', category: 'math',    points: 1, question: 'מה האינטגרל ∫₋∞^∞ e^(-x²)dx?',              answers: ['1', 'π', '√π', '2√π'],                                  correctIndex: 2 },
+  { id: 145, difficulty: 'university', category: 'math',    points: 1, question: 'מה הדטרמיננטה של מטריצת זהות 3×3?',          answers: ['0', '1', '3', '9'],                                      correctIndex: 1 },
+  { id: 146, difficulty: 'university', category: 'math',    points: 1, question: 'מה מרחב אייגן?',                              answers: ['מרחב וקטורים שנשמרים בכיוון תחת טרנספורמציה', 'ליבת המטריצה', 'קבוצת ערכים עצמיים', 'מרחב הדמות'], correctIndex: 0 },
+  { id: 147, difficulty: 'university', category: 'math',    points: 1, question: 'מה משפט סטוקס?',                              answers: ['∮F·dr = ∬(∇×F)·dS', '∯F·dS = ∭∇·F dV', '∂²u/∂t²=c²∇²u', 'F=ma'], correctIndex: 0 },
+  { id: 148, difficulty: 'university', category: 'math',    points: 1, question: 'מה פולינום טיילור של eˣ סביב x=0?',           answers: ['1+x+x²/2+...', 'x+x²/2+...', '1-x+x²/2-...', 'x-x²/2+...'], correctIndex: 0 },
+  { id: 149, difficulty: 'university', category: 'math',    points: 1, question: 'מה הגדרת הנגזרת לפי הגבול?',                  answers: ['[f(x+h)-f(x)]/h כש-h→∞', '[f(x+h)-f(x)]/h כש-h→0', 'f(x+1)-f(x)', 'f(x)/x'], correctIndex: 1 },
+  { id: 150, difficulty: 'university', category: 'math',    points: 1, question: 'מה מרחב הילברט?',                              answers: ['מרחב וקטורי עם מכפלה פנימית שהוא שלם', 'קבוצת פונקציות רציפות', 'מרחב בנך', 'מרחב מטרי סופי'], correctIndex: 0 },
+  { id: 151, difficulty: 'university', category: 'science', points: 1, question: 'מה מנת שרדינגר?',                              answers: ['משוואה לתנועה גלית של חלקיק קוונטי', 'עקרון אי-הוודאות', 'תיאוריית היחסות', 'חוק שימור מסה'], correctIndex: 0 },
+  { id: 152, difficulty: 'university', category: 'science', points: 1, question: 'מה אפקט הול?',                                 answers: ['מתח הנוצר בחומר מוליך בשדה מגנטי', 'פליטת אלקטרונים מאור', 'פיזור אור', 'פולריזציה של גל'], correctIndex: 0 },
+  { id: 153, difficulty: 'university', category: 'science', points: 1, question: 'מה משוואות מקסוול מתארות?',                   answers: ['מכניקה קלאסית', 'שדות אלקטרומגנטיים', 'תרמודינמיקה', 'מכניקת קוונטים'], correctIndex: 1 },
+  { id: 154, difficulty: 'university', category: 'science', points: 1, question: 'מה הסיבה לסדר גבוה של חלבונים (quaternary)?', answers: ['קשרים קוולנטיים בין שרשראות', 'איחוד מספר שרשראות פוליפפטיד', 'קיפול שרשרת יחידה', 'רצף חומצות האמינו'], correctIndex: 1 },
+  { id: 155, difficulty: 'university', category: 'science', points: 1, question: 'מה החוק השני של תרמודינמיקה?',                 answers: ['אנרגיה נשמרת', 'אנטרופיה של מערכת סגורה לא פוחתת', 'אנרגיה לא נברא', 'תמיד קיים חום שייר'], correctIndex: 1 },
+  { id: 156, difficulty: 'university', category: 'science', points: 1, question: 'מה ה-Big Bang Theory טוענת?',                  answers: ['היקום קיים לנצח', 'היקום התחיל מנקודה סינגולרית', 'הכוכבים הם אש', 'הגלקסיות נוצרו מחומר אפל'], correctIndex: 1 },
+  { id: 157, difficulty: 'university', category: 'science', points: 1, question: 'מה עיקרון ההכללה של פאולי?',                   answers: ['שני אלקטרונים לא יכולים לשתף את כל מספרי הקוונטום', 'אלקטרונים נמצאים במסלולים קבועים', 'האלקטרון הוא גל', 'מסת הפרוטון = מסת הנויטרון'], correctIndex: 0 },
+  { id: 158, difficulty: 'university', category: 'science', points: 1, question: 'מה אפקט פוטואלקטרי?',                          answers: ['פליטת אלקטרונים מחומר עקב אור', 'פיזור פוטונים', 'ספיגת אור', 'קרינת גוף שחור'], correctIndex: 0 },
+  { id: 159, difficulty: 'university', category: 'science', points: 1, question: 'מה הנוסחה לקצב ריאקציה כימית לפי ארניוס?',    answers: ['k=Ae^(-Ea/RT)', 'k=RT/Ea', 'k=A/T', 'k=e^(Ea/RT)'],    correctIndex: 0 },
+  { id: 160, difficulty: 'university', category: 'science', points: 1, question: 'מה חלקיק הבוזון של היגס?',                     answers: ['הגורם לחלקיקים לקבל מסה', 'נושא הכוח האלקטרומגנטי', 'חלקיק האנטי-חומר', 'קווארק מסוג up'], correctIndex: 0 },
 ];
 
 @Injectable({ providedIn: 'root' })
 export class TriviaService {
-  getByDifficulty(difficulty: Difficulty): TriviaQuestion[] {
-    return QUESTIONS.filter(q => q.difficulty === difficulty);
-  }
-
   getQuestion(id: number): TriviaQuestion | undefined {
     return QUESTIONS.find(q => q.id === id);
   }
 
-  getRandomQuestions(difficulty: Difficulty, count: number): TriviaQuestion[] {
-    const pool = this.getByDifficulty(difficulty);
+  getRandomQuestions(difficulty: Difficulty, category: TriviaCategory, count: number): TriviaQuestion[] {
+    const pool = QUESTIONS.filter(q => q.difficulty === difficulty && q.category === category);
     const shuffled = [...pool].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, Math.min(count, shuffled.length));
   }

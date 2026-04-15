@@ -47,6 +47,24 @@
     </div>
   </section>
 
+  <section class="section">
+    <h2>נושא שאלות</h2>
+    <div class="category-grid">
+      @for (c of categories; track c.value) {
+        <label class="cat-btn" [class.selected]="category === c.value">
+          <input
+            type="radio"
+            name="category"
+            [value]="c.value"
+            [(ngModel)]="category"
+          />
+          <span class="cat-emoji">{{ c.emoji }}</span>
+          {{ c.label }}
+        </label>
+      }
+    </div>
+  </section>
+
   <button
     class="start-btn"
     [disabled]="!playerName.trim()"
