@@ -10,4 +10,4 @@ export const CELL_SIZES: Record<string, number> = {
     '5-6': 32,
 };
 
-export const FRUIT_COUNTS = 8;
+export const FRUIT_COUNTS = 12;
