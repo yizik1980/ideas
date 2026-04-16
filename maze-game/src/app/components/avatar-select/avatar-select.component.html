@@ -28,6 +28,15 @@
       placeholder="הכנס שם..."
       maxlength="20"
     />
+    @if (savedNames.length > 0) {
+      <div class="saved-names">
+        @for (name of savedNames; track name) {
+          <button class="saved-name-btn" (click)="selectSavedName(name)" type="button">
+            {{ name }}
+          </button>
+        }
+      </div>
+    }
   </section>
 
   <section class="section">

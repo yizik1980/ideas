@@ -177,6 +177,102 @@ const QUESTIONS: TriviaQuestion[] = [
   { id: 158, difficulty: 'university', category: 'science', points: 1, question: 'מה אפקט פוטואלקטרי?',                          answers: ['פליטת אלקטרונים מחומר עקב אור', 'פיזור פוטונים', 'ספיגת אור', 'קרינת גוף שחור'], correctIndex: 0 },
   { id: 159, difficulty: 'university', category: 'science', points: 1, question: 'מה הנוסחה לקצב ריאקציה כימית לפי ארניוס?',    answers: ['k=Ae^(-Ea/RT)', 'k=RT/Ea', 'k=A/T', 'k=e^(Ea/RT)'],    correctIndex: 0 },
   { id: 160, difficulty: 'university', category: 'science', points: 1, question: 'מה חלקיק הבוזון של היגס?',                     answers: ['הגורם לחלקיקים לקבל מסה', 'נושא הכוח האלקטרומגנטי', 'חלקיק האנטי-חומר', 'קווארק מסוג up'], correctIndex: 0 },
+
+  // ===== גן – נוספות =====
+  { id: 161, difficulty: 'gan', category: 'math',    points: 1, question: 'כמה זה 3 + 3?',              answers: ['4', '5', '6', '7'],                  correctIndex: 2 },
+  { id: 162, difficulty: 'gan', category: 'math',    points: 1, question: 'כמה זה 8 - 5?',              answers: ['2', '3', '4', '5'],                  correctIndex: 1 },
+  { id: 163, difficulty: 'gan', category: 'math',    points: 1, question: 'כמה זה 2 × 3?',              answers: ['4', '5', '6', '7'],                  correctIndex: 2 },
+  { id: 164, difficulty: 'gan', category: 'math',    points: 1, question: 'כמה זה 10 - 7?',             answers: ['1', '2', '3', '4'],                  correctIndex: 2 },
+  { id: 165, difficulty: 'gan', category: 'math',    points: 1, question: 'כמה זה 4 + 4?',              answers: ['6', '7', '8', '9'],                  correctIndex: 2 },
+  { id: 166, difficulty: 'gan', category: 'science', points: 1, question: 'מה יוצא מעננים?',            answers: ['אש', 'שלג ומטר', 'עשן', 'אבק'],      correctIndex: 1 },
+  { id: 167, difficulty: 'gan', category: 'science', points: 1, question: 'מה אוכל ארנבת?',             answers: ['דגים', 'גזר ועשב', 'בשר', 'אבנים'],  correctIndex: 1 },
+  { id: 168, difficulty: 'gan', category: 'science', points: 1, question: 'איזה חיה נותנת חלב?',        answers: ['כלב', 'פרה', 'תרנגול', 'דג'],         correctIndex: 1 },
+  { id: 169, difficulty: 'gan', category: 'science', points: 1, question: 'מה מרגישים כשקר?',           answers: ['חם', 'חמים', 'קר', 'לא מרגישים'],     correctIndex: 2 },
+  { id: 170, difficulty: 'gan', category: 'science', points: 1, question: 'כמה עיניים יש לאדם?',        answers: ['1', '2', '3', '4'],                  correctIndex: 1 },
+
+  // ===== א-ב – נוספות =====
+  { id: 171, difficulty: '1-2', category: 'math',    points: 1, question: 'כמה זה 11 × 4?',             answers: ['40', '44', '48', '52'],               correctIndex: 1 },
+  { id: 172, difficulty: '1-2', category: 'math',    points: 1, question: 'כמה זה 75 + 25?',            answers: ['90', '95', '100', '110'],             correctIndex: 2 },
+  { id: 173, difficulty: '1-2', category: 'math',    points: 1, question: 'כמה זה 8 × 9?',              answers: ['63', '72', '81', '90'],               correctIndex: 1 },
+  { id: 174, difficulty: '1-2', category: 'math',    points: 1, question: 'כמה זה 120 ÷ 6?',            answers: ['18', '20', '22', '24'],               correctIndex: 1 },
+  { id: 175, difficulty: '1-2', category: 'math',    points: 1, question: 'כמה זה 5² (5 בריבוע)?',      answers: ['10', '15', '20', '25'],               correctIndex: 3 },
+  { id: 176, difficulty: '1-2', category: 'science', points: 1, question: 'כמה שעות בשלושה ימים?',       answers: ['48', '60', '72', '84'],               correctIndex: 2 },
+  { id: 177, difficulty: '1-2', category: 'science', points: 1, question: 'מה קורה לשמן במים?',          answers: ['נמס', 'שוקע', 'צף', 'נעלם'],          correctIndex: 2 },
+  { id: 178, difficulty: '1-2', category: 'science', points: 1, question: 'מאיזה כיוון זורחת השמש?',     answers: ['מערב', 'צפון', 'דרום', 'מזרח'],       correctIndex: 3 },
+  { id: 179, difficulty: '1-2', category: 'science', points: 1, question: 'מה החלק של הצמח שבאדמה?',    answers: ['גבעול', 'עלה', 'שורש', 'פרח'],        correctIndex: 2 },
+  { id: 180, difficulty: '1-2', category: 'science', points: 1, question: 'מי ממציא הטלפון?',            answers: ['אדיסון', 'גרהם בל', 'ניוטון', 'איינשטיין'], correctIndex: 1 },
+
+  // ===== ג-ד – נוספות =====
+  { id: 181, difficulty: '3-4', category: 'math',    points: 1, question: 'כמה זה 15 × 15?',            answers: ['175', '200', '225', '250'],           correctIndex: 2 },
+  { id: 182, difficulty: '3-4', category: 'math',    points: 1, question: 'מה שטח ריבוע עם צלע 9?',     answers: ['36', '54', '72', '81'],               correctIndex: 3 },
+  { id: 183, difficulty: '3-4', category: 'math',    points: 1, question: 'כמה זה 5/8 + 3/8?',          answers: ['1/2', '3/4', '1', '8/16'],            correctIndex: 2 },
+  { id: 184, difficulty: '3-4', category: 'math',    points: 1, question: 'כמה זה 2.5 × 4?',            answers: ['8', '10', '12', '14'],                correctIndex: 1 },
+  { id: 185, difficulty: '3-4', category: 'math',    points: 1, question: 'כמה אלפים ב-45,000?',         answers: ['4', '5', '45', '450'],                correctIndex: 2 },
+  { id: 186, difficulty: '3-4', category: 'science', points: 1, question: 'מה גרם לכחדת הדינוזאורים?',  answers: ['הצפה', 'אסטרואיד', 'מחלה', 'צינה'],  correctIndex: 1 },
+  { id: 187, difficulty: '3-4', category: 'science', points: 1, question: 'כמה שנים בעידן יולי?',        answers: ['365', '100', '1000', '365.25'],       correctIndex: 3 },
+  { id: 188, difficulty: '3-4', category: 'science', points: 1, question: 'מה הפלנטה הגדולה ביותר?',    answers: ['שבתאי', 'נפטון', 'צדק', 'אורנוס'],   correctIndex: 2 },
+  { id: 189, difficulty: '3-4', category: 'science', points: 1, question: 'מה ה-DNA מקודד?',             answers: ['אנרגיה', 'חלבונים', 'שומנים', 'מים'], correctIndex: 1 },
+  { id: 190, difficulty: '3-4', category: 'science', points: 1, question: 'מה סוג הגל של רעידת אדמה?',  answers: ['גל אור', 'גל מכני', 'גל רדיו', 'גל חום'], correctIndex: 1 },
+
+  // ===== ה-ו – נוספות =====
+  { id: 191, difficulty: '5-6', category: 'math',    points: 1, question: 'פתור: 3x - 7 = 14',           answers: ['5', '6', '7', '8'],                  correctIndex: 2 },
+  { id: 192, difficulty: '5-6', category: 'math',    points: 1, question: 'כמה זה 3/4 × 8/9?',          answers: ['1/3', '2/3', '1', '4/3'],             correctIndex: 1 },
+  { id: 193, difficulty: '5-6', category: 'math',    points: 1, question: 'כמה זה 12²?',                 answers: ['124', '132', '144', '156'],           correctIndex: 2 },
+  { id: 194, difficulty: '5-6', category: 'math',    points: 1, question: 'מה אחוז הרווח: קנה ב-80 מכר ב-100?', answers: ['15%', '20%', '25%', '30%'],  correctIndex: 2 },
+  { id: 195, difficulty: '5-6', category: 'math',    points: 1, question: 'כמה זה 5/6 ÷ 5/3?',           answers: ['1/2', '2/3', '1', '5/6'],             correctIndex: 0 },
+  { id: 196, difficulty: '5-6', category: 'science', points: 1, question: 'מה הצורה הכימית של מלח?',    answers: ['KCl', 'NaCl', 'CaCl₂', 'MgCl₂'],     correctIndex: 1 },
+  { id: 197, difficulty: '5-6', category: 'science', points: 1, question: 'כמה ורידים יוצאים מהלב?',    answers: ['1', '2', '3', '4'],                   correctIndex: 1 },
+  { id: 198, difficulty: '5-6', category: 'science', points: 1, question: 'מה קצב הלב התקין לאדם?',     answers: ['40-50', '60-100', '120-140', '150+'], correctIndex: 1 },
+  { id: 199, difficulty: '5-6', category: 'science', points: 1, question: 'מה הכוח שמושך גופים לאדמה?', answers: ['מגנטיות', 'חשמל', 'גרביטציה', 'לחץ'], correctIndex: 2 },
+  { id: 200, difficulty: '5-6', category: 'science', points: 1, question: 'מה צבעי הקשת בסדר?',         answers: ['אדום כתום צהוב ירוק כחול סגול', 'כחול ירוק צהוב כתום אדום סגול', 'סגול כחול ירוק צהוב כתום אדום', 'אדום כתום צהוב כחול ירוק סגול'], correctIndex: 0 },
+
+  // ===== ז-ח – נוספות =====
+  { id: 201, difficulty: '7-8', category: 'math',    points: 1, question: 'פתור: 5x + 3 = 28',          answers: ['4', '5', '6', '7'],                  correctIndex: 1 },
+  { id: 202, difficulty: '7-8', category: 'math',    points: 1, question: 'כמה זה (2³)² ?',              answers: ['32', '64', '128', '256'],             correctIndex: 1 },
+  { id: 203, difficulty: '7-8', category: 'math',    points: 1, question: 'מה הזווית החיצונית של משושה?', answers: ['45°', '60°', '72°', '90°'],          correctIndex: 1 },
+  { id: 204, difficulty: '7-8', category: 'math',    points: 1, question: 'פשט: 3(2x-4)+6',              answers: ['6x-6', '6x-12', '6x+6', '6x'],       correctIndex: 0 },
+  { id: 205, difficulty: '7-8', category: 'math',    points: 1, question: 'כמה זה |−15|?',               answers: ['-15', '0', '15', '150'],              correctIndex: 2 },
+  { id: 206, difficulty: '7-8', category: 'science', points: 1, question: 'מה הסמל הכימי של כלור?',      answers: ['C', 'Ca', 'Cl', 'Co'],                correctIndex: 2 },
+  { id: 207, difficulty: '7-8', category: 'science', points: 1, question: 'כמה חוליות יש בעמוד השדרה?', answers: ['24', '33', '36', '42'],               correctIndex: 1 },
+  { id: 208, difficulty: '7-8', category: 'science', points: 1, question: 'מה תפקיד הכליות?',            answers: ['עיכול', 'סינון דם ויצירת שתן', 'נשימה', 'ייצור הורמונים'], correctIndex: 1 },
+  { id: 209, difficulty: '7-8', category: 'science', points: 1, question: 'מה היחידה למדידת תדר?',       answers: ['וולט', 'אמפר', 'הרץ', 'ואט'],         correctIndex: 2 },
+  { id: 210, difficulty: '7-8', category: 'science', points: 1, question: 'מה מהירות קול במים?',         answers: ['340 מ/ש', '750 מ/ש', '1500 מ/ש', '3000 מ/ש'], correctIndex: 2 },
+
+  // ===== ט-י – נוספות =====
+  { id: 211, difficulty: '9-10', category: 'math',    points: 1, question: 'מה הנגזרת של sin(x)?',       answers: ['-sin(x)', 'cos(x)', '-cos(x)', 'tan(x)'], correctIndex: 1 },
+  { id: 212, difficulty: '9-10', category: 'math',    points: 1, question: 'כמה זה C(6,2)?',             answers: ['12', '15', '18', '30'],               correctIndex: 1 },
+  { id: 213, difficulty: '9-10', category: 'math',    points: 1, question: 'מה גבול: lim(x→2) (x²-4)/(x-2)?', answers: ['0', '2', '4', '∞'],             correctIndex: 2 },
+  { id: 214, difficulty: '9-10', category: 'math',    points: 1, question: 'כמה זה sin²x + cos²x?',      answers: ['0', '0.5', '1', '2'],                 correctIndex: 2 },
+  { id: 215, difficulty: '9-10', category: 'math',    points: 1, question: 'מה סכום זוויות המצולע בעל 8 צלעות?', answers: ['900°', '1080°', '1260°', '1440°'], correctIndex: 1 },
+  { id: 216, difficulty: '9-10', category: 'science', points: 1, question: 'מה אורך גל האור הנראה?',     answers: ['1-10 נמ', '400-700 נמ', '1-10 מ"מ', '1-100 מ'], correctIndex: 1 },
+  { id: 217, difficulty: '9-10', category: 'science', points: 1, question: 'מה תפקיד הריבוזום?',         answers: ['שכפול DNA', 'סינתזת חלבונים', 'ייצור ATP', 'פירוק פסולת'], correctIndex: 1 },
+  { id: 218, difficulty: '9-10', category: 'science', points: 1, question: 'מה חוק שימור התנע?',         answers: ['p=mv תמיד קבוע', 'בהיעדר כוח חיצוני תנע מערכת סגורה קבוע', 'F=ma', 'E=mc²'], correctIndex: 1 },
+  { id: 219, difficulty: '9-10', category: 'science', points: 1, question: 'מה ה-ATP?',                  answers: ['חומצת שומן', 'מולקולת אנרגיה תאית', 'חלבון', 'ורמה גנטית'], correctIndex: 1 },
+  { id: 220, difficulty: '9-10', category: 'science', points: 1, question: 'מה עיקרון ארכימדס?',         answers: ['גוף שקוע דוחה נוזל שווה למסתו', 'גוף שקוע דוחה נוזל שווה לנפחו', 'כל גוף צף', 'לחץ = כוח × שטח'], correctIndex: 1 },
+
+  // ===== י״א-י״ב – נוספות =====
+  { id: 221, difficulty: '11-12', category: 'math',    points: 1, question: 'מה ∫x²dx?',                answers: ['x³+C', 'x³/3+C', '2x+C', '3x³+C'],   correctIndex: 1 },
+  { id: 222, difficulty: '11-12', category: 'math',    points: 1, question: 'מה נגזרת tan(x)?',          answers: ['sin(x)/cos(x)', '1/cos²x', '-1/sin²x', 'cos²x'], correctIndex: 1 },
+  { id: 223, difficulty: '11-12', category: 'math',    points: 1, question: 'כמה פתרונות ל-|2x-1|=5?',  answers: ['0', '1', '2', '3'],                   correctIndex: 2 },
+  { id: 224, difficulty: '11-12', category: 'math',    points: 1, question: 'מה קיים בכל חוג אבלי?',     answers: ['אידמפוטנט', 'איבר ניטרלי', 'מחלקת מנה', 'מרחב וקטורי'], correctIndex: 1 },
+  { id: 225, difficulty: '11-12', category: 'math',    points: 1, question: 'כמה אסימפטוטות אנכיות ל- 1/(x²-1)?', answers: ['0', '1', '2', '3'],          correctIndex: 2 },
+  { id: 226, difficulty: '11-12', category: 'science', points: 1, question: 'מה עקרון לה שאטלייה?',      answers: ['מערכת בשיווי משקל מגיבה לשינוי כדי לנטרל אותו', 'אנרגיה מתחלקת שווה', 'אנטרופיה עולה', 'מהירות תגובה פרופורציונלית לריכוז'], correctIndex: 0 },
+  { id: 227, difficulty: '11-12', category: 'science', points: 1, question: 'מה הקשר בין מתח לשדה חשמלי?', answers: ['E=V/d', 'E=Vd', 'V=Ed²', 'E=V²'], correctIndex: 0 },
+  { id: 228, difficulty: '11-12', category: 'science', points: 1, question: 'מה תהליך הטרנסקריפציה?',   answers: ['העתקת DNA ל-RNA', 'תרגום RNA לחלבון', 'שכפול DNA', 'פירוק חלבון'], correctIndex: 0 },
+  { id: 229, difficulty: '11-12', category: 'science', points: 1, question: 'מה המשוואה הכללית לגז אידיאלי?', answers: ['PV=nRT', 'PV=RT', 'P=nRT', 'PV=nR'], correctIndex: 0 },
+  { id: 230, difficulty: '11-12', category: 'science', points: 1, question: 'מה המטען של האלקטרון?',     answers: ['0', '+1.6×10⁻¹⁹ C', '-1.6×10⁻¹⁹ C', '9.1×10⁻³¹ C'], correctIndex: 2 },
+
+  // ===== אוניברסיטה – נוספות =====
+  { id: 231, difficulty: 'university', category: 'math',    points: 1, question: 'מה משפט פרמה הגדול?',  answers: ['xⁿ+yⁿ=zⁿ אין פתרונות שלמים לn>2', 'כל מספר ראשוני הוא אי-זוגי', 'π אי-רציונלי', 'e טרנסצנדנטי'], correctIndex: 0 },
+  { id: 232, difficulty: 'university', category: 'math',    points: 1, question: 'מה הגדרת מרחב טופולוגי?', answers: ['קבוצה עם פונקציית מטריקה', 'קבוצה עם אוסף של קבוצות פתוחות הקיימות בתנאים', 'מרחב עם מכפלה פנימית', 'מרחב בנך'], correctIndex: 1 },
+  { id: 233, difficulty: 'university', category: 'math',    points: 1, question: 'מה משפט גאוס (דיברגנס)?', answers: ['∯F·dS=∭∇·F dV', '∮F·dr=∬(∇×F)·dS', '∫∫∫f dV=∫∫f dA', 'F=ma'], correctIndex: 0 },
+  { id: 234, difficulty: 'university', category: 'math',    points: 1, question: 'מה התנאי לרצף פונקציה b-ב?', answers: ['lim(x→b) f(x)=f(b)', 'f גזירה ב-b', 'f חסומה', 'f מונוטונית'], correctIndex: 0 },
+  { id: 235, difficulty: 'university', category: 'math',    points: 1, question: 'מה משפט המדד האפסי?',   answers: ['קבוצה בת-מנייה היא באפס מדד לבג', 'כל קבוצה פתוחה ניתנת למדידה', 'המדד של ℝ הוא אחד', 'כל סדרה מתכנסת'], correctIndex: 0 },
+  { id: 236, difficulty: 'university', category: 'science', points: 1, question: 'מה תיאוריית הסטרינגים מציעה?', answers: ['החלקיקים הם חוטים רוטטים חד-ממדיים', 'הגלים הם חלקיקים', 'המרחב הוא דיסקרטי', 'הכוח החזק הוא אינסופי'], correctIndex: 0 },
+  { id: 237, difficulty: 'university', category: 'science', points: 1, question: 'מה עקרון כוורות?',      answers: ['חישוב אנרגיה קינטית', 'שיטה לחישוב ספקטרום', 'עיקרון וריאציוני לאנרגיה בסיס', 'חוק שימור'], correctIndex: 2 },
+  { id: 238, difficulty: 'university', category: 'science', points: 1, question: 'מה ה-Renormalization Group?', answers: ['שיטה לניתוח מערכות בסקאלות שונות', 'חישוב מסת חלקיקים', 'תיאוריה של גלים', 'שיטת אינטגרציה'], correctIndex: 0 },
+  { id: 239, difficulty: 'university', category: 'science', points: 1, question: 'מה הנוסחה לאנרגיה חופשית של גיבס?', answers: ['G=H+TS', 'G=H-TS', 'G=U+PV', 'G=kT ln Z'], correctIndex: 1 },
+  { id: 240, difficulty: 'university', category: 'science', points: 1, question: 'מה הגדרת הסופרקונדוקטיביות?', answers: ['התנגדות חשמלית אפסית מתחת לטמפרטורה קריטית', 'הולכה מושלמת של חום', 'פליטת אור קוהרנטי', 'הזרמת חשמל ללא חיכוך'], correctIndex: 0 },
 ];
 
 @Injectable({ providedIn: 'root' })

@@ -63,6 +63,29 @@ h1 {
   &.gold { color: #c9a600; }
 }
 
+.time-bonus {
+  margin-top: 1.2rem;
+  background: linear-gradient(135deg, #fff8e1, #fff3cd);
+  border: 2px solid #f0c040;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #856404;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.bonus-tag {
+  background: #f0c040;
+  color: #5a3e00;
+  border-radius: 8px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.8rem;
+}
+
 // ── Leaderboard ────────────────────────────────────────────────────────────────
 .leaderboard {
   width: 100%;

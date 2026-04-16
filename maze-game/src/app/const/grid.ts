@@ -1,13 +1,5 @@
-export const COLS_AND_ROWS = {
-    cols: 20,
-    rows: 20
-};
-
-export const CELL_SIZES: Record<string, number> = {
-    'gan': 56,
-    '1-2': 48,
-    '3-4': 40,
-    '5-6': 32,
-};
-
-export const FRUIT_COUNTS = 12;
+export const STAGE_CONFIG = [
+  { stage: 1, rows: 16, cols: 16, fruits: 8  },
+  { stage: 2, rows: 20, cols: 20, fruits: 10 },
+  { stage: 3, rows: 24, cols: 24, fruits: 12 },
+] as const;

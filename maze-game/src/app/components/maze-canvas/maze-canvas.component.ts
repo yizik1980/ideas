@@ -15,11 +15,13 @@ import { DbService } from '../../services/db.service';
 import { GameStateService } from '../../services/game-state.service';
 import { MazeService } from '../../services/maze.service';
 import { TriviaService } from '../../services/trivia.service';
-import { COLS_AND_ROWS } from '../../const/grid';
+import { STAGE_CONFIG } from '../../const/grid';
 
 const MAX_CELL_SIZES: Record<string, number> = {
   gan: 72, '1-2': 56, '3-4': 44, '5-6': 36, '7-8': 30, '9-10': 26, '11-12': 26, university: 26,
 };
+
+const MAX_WRONGS = 2;
 
 @Component({
   selector: 'app-maze-canvas',
@@ -46,11 +48,18 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
   score = signal(0);
   elapsedSeconds = signal(0);
 
+  // Stage & wrongs
+  stageNum = signal(1);
+  wrongsThisStage = signal(0);
+  readonly maxWrongs = MAX_WRONGS;
+  announcement = signal('');
+
   // Trivia modal
   activeQuestion = signal<TriviaQuestion | null>(null);
   activeFruitIndex = -1;
   answerResult = signal<'correct' | 'wrong' | null>(null);
 
+  private stageIndex = 0;
   private cellSize = 56;
   private rows = 0;
   private cols = 0;
@@ -64,15 +73,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
       this.router.navigate(['/']);
       return;
     }
-    const diff = this.config()!.difficulty;
-    const { rows, cols } = COLS_AND_ROWS;
-    this.rows = rows;
-    this.cols = cols;
-    this.computeCellSize();
-
-    const { grid, fruits } = this.mazeService.generate(diff, this.config()!.category);
-    this.grid = grid;
-    this.fruits = fruits;
+    this.loadStage(0);
     this.timerInterval = setInterval(() => {
       this.elapsedSeconds.update(s => s + 1);
     }, 1000);
@@ -87,13 +88,37 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.timerInterval) clearInterval(this.timerInterval);
   }
 
+  private loadStage(index: number, showAnnouncement = false): void {
+    this.stageIndex = index;
+    const cfg = STAGE_CONFIG[index];
+    this.rows = cfg.rows;
+    this.cols = cfg.cols;
+    this.playerRow = 0;
+    this.playerCol = 0;
+    this.wrongsThisStage.set(0);
+    this.stageNum.set(cfg.stage);
+    this.computeCellSize();
+
+    const diff = this.config()!.difficulty;
+    const cat  = this.config()!.category;
+    const { grid, fruits } = this.mazeService.generate(diff, cat, cfg.rows, cfg.cols, cfg.fruits);
+    this.grid = grid;
+    this.fruits = fruits;
+
+    if (showAnnouncement) {
+      // canvas already exists — resize and redraw after brief announcement
+      this.resizeCanvas();
+      this.draw();
+    }
+  }
+
   private computeCellSize(): void {
     const diff = this.config()!.difficulty;
     const maxFromDiff = MAX_CELL_SIZES[diff] ?? 50;
     const availW = window.innerWidth - 32;
-    const availH = window.innerHeight - 220; // HUD + hint + dpad
+    const availH = window.innerHeight - 220;
     const cellFromScreen = Math.floor(Math.min(availW / this.cols, availH / this.rows));
-    this.cellSize = Math.min(maxFromDiff, Math.max(16, cellFromScreen));
+    this.cellSize = Math.min(maxFromDiff, Math.max(14, cellFromScreen));
   }
 
   @HostListener('window:resize')
@@ -164,12 +189,28 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
   answerQuestion(index: number): void {
     const q = this.activeQuestion();
     if (!q) return;
+
     if (index === q.correctIndex) {
       this.score.update(s => s + q.points);
       this.answerResult.set('correct');
     } else {
       this.answerResult.set('wrong');
+      if (this.stageIndex > 0) {
+        const newWrongs = this.wrongsThisStage() + 1;
+        this.wrongsThisStage.set(newWrongs);
+        if (newWrongs >= MAX_WRONGS) {
+          this.fruits[this.activeFruitIndex].collected = true;
+          setTimeout(() => {
+            this.activeQuestion.set(null);
+            this.answerResult.set(null);
+            this.inputBlocked = false;
+            this.triggerStageBack();
+          }, 1200);
+          return;
+        }
+      }
     }
+
     this.fruits[this.activeFruitIndex].collected = true;
     setTimeout(() => {
       this.activeQuestion.set(null);
@@ -179,22 +220,51 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 1200);
   }
 
+  private triggerStageBack(): void {
+    const prevIndex = this.stageIndex - 1;
+    this.inputBlocked = true;
+    this.announcement.set(`⬇️ חזרה לשלב ${STAGE_CONFIG[prevIndex].stage}`);
+    setTimeout(() => {
+      this.announcement.set('');
+      this.loadStage(prevIndex, true);
+      this.inputBlocked = false;
+    }, 2000);
+  }
+
   private checkExit(): void {
     if (this.playerRow === this.rows - 1 && this.playerCol === this.cols - 1) {
       this.inputBlocked = true;
-      if (this.timerInterval) clearInterval(this.timerInterval);
-      this.saveAndNavigate();
+      if (this.stageIndex < STAGE_CONFIG.length - 1) {
+        this.triggerNextStage();
+      } else {
+        if (this.timerInterval) clearInterval(this.timerInterval);
+        this.saveAndNavigate();
+      }
     }
+  }
+
+  private triggerNextStage(): void {
+    const nextIndex = this.stageIndex + 1;
+    this.announcement.set(`🎉 שלב ${STAGE_CONFIG[this.stageIndex].stage} הושלם! עוברים לשלב ${STAGE_CONFIG[nextIndex].stage}`);
+    setTimeout(() => {
+      this.announcement.set('');
+      this.loadStage(nextIndex, true);
+      this.inputBlocked = false;
+    }, 2000);
   }
 
   private async saveAndNavigate(): Promise<void> {
     const cfg = this.config()!;
+    const seconds = this.elapsedSeconds();
+    const timeBonus = seconds < 600 ? 10 : seconds < 1200 ? 5 : 0;
+    if (timeBonus > 0) this.score.update(s => s + timeBonus);
+
     const result = {
       playerName: cfg.playerName,
       avatarEmoji: cfg.avatar.emoji,
       difficulty: cfg.difficulty,
       score: this.score(),
-      timeSeconds: this.elapsedSeconds(),
+      timeSeconds: seconds,
       completedAt: new Date().toISOString(),
     };
     const id = await this.dbService.saveResult(result);
@@ -225,7 +295,6 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     ctx.strokeStyle = '#4a2c8c';
     ctx.lineWidth = 2;
     ctx.fillStyle = '#fdf8ff';
-
     for (const row of this.grid) {
       for (const cell of row) {
         const x = cell.col * cs;

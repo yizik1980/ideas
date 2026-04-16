@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { AVATARS, Avatar, Difficulty, DIFFICULTY_LABELS, TriviaCategory } from '../../models';
 import { GameStateService } from '../../services/game-state.service';
 
+const NAMES_KEY = 'maze_saved_names';
+const MAX_SAVED = 5;
+
 @Component({
   selector: 'app-avatar-select',
   standalone: true,
@@ -20,6 +23,7 @@ export class AvatarSelectComponent {
   playerName = '';
   difficulty: Difficulty = 'gan';
   category: TriviaCategory = 'math';
+  savedNames: string[] = JSON.parse(localStorage.getItem(NAMES_KEY) ?? '[]');
 
   difficulties: { value: Difficulty; label: string }[] = [
     { value: 'gan',        label: DIFFICULTY_LABELS['gan'] },
@@ -41,14 +45,25 @@ export class AvatarSelectComponent {
     this.selectedAvatar = a;
   }
 
+  selectSavedName(name: string): void {
+    this.playerName = name;
+  }
+
   startGame(): void {
-    if (!this.playerName.trim()) return;
+    const name = this.playerName.trim();
+    if (!name) return;
+    this.saveName(name);
     this.gameState.setConfig({
-      playerName: this.playerName.trim(),
+      playerName: name,
       avatar: this.selectedAvatar,
       difficulty: this.difficulty,
       category: this.category,
     });
     this.router.navigate(['/game']);
+  }
+
+  private saveName(name: string): void {
+    const updated = [name, ...this.savedNames.filter(n => n !== name)].slice(0, MAX_SAVED);
+    localStorage.setItem(NAMES_KEY, JSON.stringify(updated));
   }
 }

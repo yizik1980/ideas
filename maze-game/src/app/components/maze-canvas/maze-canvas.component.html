@@ -1,9 +1,14 @@
 <div class="game-wrapper" dir="rtl">
+
   <!-- HUD -->
   <div class="hud">
     <div class="hud-item">
       <span class="hud-label">שחקן</span>
       <span class="hud-value">{{ config()?.avatar?.emoji }} {{ config()?.playerName }}</span>
+    </div>
+    <div class="hud-item">
+      <span class="hud-label">שלב</span>
+      <span class="hud-value stage-badge">{{ stageNum() }} / 3</span>
     </div>
     <div class="hud-item">
       <span class="hud-label">ניקוד</span>
@@ -13,6 +18,16 @@
       <span class="hud-label">זמן</span>
       <span class="hud-value">{{ formatTime(elapsedSeconds()) }}</span>
     </div>
+    @if (stageNum() > 1) {
+      <div class="hud-item">
+        <span class="hud-label">שגיאות</span>
+        <span class="hud-value wrongs">
+          @for (i of [0,1]; track i) {
+            <span [class.wrong-filled]="wrongsThisStage() > i">❤️</span>
+          }
+        </span>
+      </div>
+    }
   </div>
 
   <!-- Canvas -->
@@ -20,8 +35,14 @@
     <canvas #mazeCanvas tabindex="0"></canvas>
   </div>
 
-  <p class="hint">מקלדת / החלק אצבע / לחץ על החצים · אסוף 🍎 · הגע ל-🏁</p>
+  <p class="hint">החלק אצבע / חצי מקלדת · אסוף 🍎 · הגע ל-🏁</p>
 
+  <!-- Stage announcement overlay -->
+  @if (announcement()) {
+    <div class="announcement-backdrop">
+      <div class="announcement-box">{{ announcement() }}</div>
+    </div>
+  }
 
   <!-- Trivia Modal -->
   @if (activeQuestion()) {
@@ -38,7 +59,9 @@
               </button>
             }
           </div>
-          <p class="points-hint">תשובה נכונה = {{ activeQuestion()!.points }} נקודות</p>
+          @if (stageNum() > 1) {
+            <p class="warning-hint">⚠️ {{ maxWrongs - wrongsThisStage() }} שגיאות נותרו לפני חזרה לשלב הקודם</p>
+          }
         }
 
         @if (answerResult() === 'correct') {
@@ -50,4 +73,5 @@
       </div>
     </div>
   }
+
 </div>

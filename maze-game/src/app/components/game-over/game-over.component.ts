@@ -27,6 +27,10 @@ export class GameOverComponent implements OnInit {
     this.topResults.set(top);
   }
 
+  timeBonus(seconds: number): number {
+    return seconds < 600 ? 10 : seconds < 1200 ? 5 : 0;
+  }
+
   diffLabel(d: Difficulty): string {
     return DIFFICULTY_LABELS[d];
   }

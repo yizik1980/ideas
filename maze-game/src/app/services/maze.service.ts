@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Cell, Difficulty, Fruit, TriviaCategory } from '../models';
 import { TriviaService } from './trivia.service';
-import { COLS_AND_ROWS, FRUIT_COUNTS } from '../const/grid';
 
 @Injectable({ providedIn: 'root' })
 export class MazeService {
   constructor(private trivia: TriviaService) { }
 
-  generate(difficulty: Difficulty, category: TriviaCategory): { grid: Cell[][]; fruits: Fruit[] } {
-    const { rows, cols } = COLS_AND_ROWS;
-    const fruitCount = FRUIT_COUNTS;
+  generate(difficulty: Difficulty, category: TriviaCategory, rows: number, cols: number, fruits: number): { grid: Cell[][]; fruits: Fruit[] } {
     const grid = this.buildGrid(rows, cols);
-
     this.carve(grid, 0, 0);
-    const fruits = this.placeFruits(rows, cols, fruitCount, difficulty, category);
-    return { grid, fruits };
+    return { grid, fruits: this.placeFruits(rows, cols, fruits, difficulty, category) };
   }
 
   private buildGrid(rows: number, cols: number): Cell[][] {

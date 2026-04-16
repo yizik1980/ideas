@@ -21,6 +21,17 @@
         <span class="stat-value">{{ diffLabel(lastResult()?.difficulty ?? 'gan') }}</span>
       </div>
     </div>
+
+    @if (timeBonus(lastResult()?.timeSeconds ?? 9999) > 0) {
+      <div class="time-bonus">
+        ⚡ בונוס זמן: +{{ timeBonus(lastResult()?.timeSeconds ?? 0) }} נקודות
+        @if ((lastResult()?.timeSeconds ?? 9999) < 600) {
+          <span class="bonus-tag">פחות מ-10 דקות!</span>
+        } @else {
+          <span class="bonus-tag">פחות מ-20 דקות!</span>
+        }
+      </div>
+    }
   </div>
 
   <!-- Leaderboard -->
