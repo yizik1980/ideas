@@ -6,7 +6,7 @@ export interface Avatar {
   label: string;
 }
 
-export type TriviaCategory = 'science' | 'math';
+export type TriviaCategory = 'science' | 'math' | 'hebrew';
 
 export interface GameConfig {
   playerName: string;
@@ -46,7 +46,7 @@ export interface TriviaQuestion {
   correctIndex: number;
   points: number;
   difficulty: Difficulty;
-  category: 'science' | 'math';
+  category: TriviaCategory;
 }
 
 export const DIFFICULTY_LABELS: Record<Difficulty, string> = {

@@ -15,6 +15,7 @@ import { DbService } from '../../services/db.service';
 import { GameStateService } from '../../services/game-state.service';
 import { MazeService } from '../../services/maze.service';
 import { TriviaService } from '../../services/trivia.service';
+import { SoundService } from '../../services/sound.service';
 import { STAGE_CONFIG } from '../../const/grid';
 
 const MAX_CELL_SIZES: Record<string, number> = {
@@ -37,6 +38,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
   private mazeService = inject(MazeService);
   private triviaService = inject(TriviaService);
   private dbService = inject(DbService);
+  private sound = inject(SoundService);
 
   config = this.gameState.config;
 
@@ -74,6 +76,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
     this.loadStage(0);
+    this.sound.gameStart();
     this.timerInterval = setInterval(() => {
       this.elapsedSeconds.update(s => s + 1);
     }, 1000);
@@ -181,6 +184,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     this.activeFruitIndex = idx;
     const q = this.triviaService.getQuestion(this.fruits[idx].questionId);
     if (q) {
+      this.sound.fruitCollect();
       this.inputBlocked = true;
       this.activeQuestion.set(q);
     }
@@ -192,8 +196,10 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (index === q.correctIndex) {
       this.score.update(s => s + q.points);
+      this.sound.correctAnswer();
       this.answerResult.set('correct');
     } else {
+      this.sound.wrongAnswer();
       this.answerResult.set('wrong');
       if (this.stageIndex > 0) {
         const newWrongs = this.wrongsThisStage() + 1;
@@ -205,7 +211,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
             this.answerResult.set(null);
             this.inputBlocked = false;
             this.triggerStageBack();
-          }, 1200);
+          }, 2200);
           return;
         }
       }
@@ -217,7 +223,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
       this.answerResult.set(null);
       this.inputBlocked = false;
       this.draw();
-    }, 1200);
+    }, 2200);
   }
 
   private triggerStageBack(): void {
@@ -238,6 +244,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
         this.triggerNextStage();
       } else {
         if (this.timerInterval) clearInterval(this.timerInterval);
+        this.sound.gameOver();
         this.saveAndNavigate();
       }
     }
@@ -245,6 +252,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private triggerNextStage(): void {
     const nextIndex = this.stageIndex + 1;
+    this.sound.stageComplete();
     this.announcement.set(`🎉 שלב ${STAGE_CONFIG[this.stageIndex].stage} הושלם! עוברים לשלב ${STAGE_CONFIG[nextIndex].stage}`);
     setTimeout(() => {
       this.announcement.set('');

@@ -39,6 +39,7 @@ export class AvatarSelectComponent {
   categories: { value: TriviaCategory; label: string; emoji: string }[] = [
     { value: 'math',    label: 'מתמטיקה', emoji: '🔢' },
     { value: 'science', label: 'מדע',     emoji: '🔬' },
+    { value: 'hebrew',  label: 'עברית',   emoji: '📖' },
   ];
 
   selectAvatar(a: Avatar): void {
