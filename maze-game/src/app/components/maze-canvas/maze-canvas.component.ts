@@ -103,7 +103,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     this.computeCellSize();
 
     const diff = this.config()!.difficulty;
-    const cat  = this.config()!.category;
+    const cat = this.config()!.category;
     const { grid, fruits } = this.mazeService.generate(diff, cat, cfg.rows, cfg.cols, cfg.fruits);
     this.grid = grid;
     this.fruits = fruits;
@@ -154,10 +154,10 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
   onKey(e: KeyboardEvent): void {
     type WallKey = keyof Cell['walls'];
     const moves: Record<string, [number, number, WallKey]> = {
-      ArrowUp:    [-1,  0, 'top'],
-      ArrowDown:  [ 1,  0, 'bottom'],
-      ArrowLeft:  [ 0, -1, 'left'],
-      ArrowRight: [ 0,  1, 'right'],
+      ArrowUp: [-1, 0, 'top'],
+      ArrowDown: [1, 0, 'bottom'],
+      ArrowLeft: [0, -1, 'left'],
+      ArrowRight: [0, 1, 'right'],
     };
     const move = moves[e.key];
     if (!move) return;
@@ -308,10 +308,10 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
         const x = cell.col * cs;
         const y = cell.row * cs;
         ctx.fillRect(x, y, cs, cs);
-        if (cell.walls.top)    { ctx.beginPath(); ctx.moveTo(x, y);        ctx.lineTo(x + cs, y);        ctx.stroke(); }
-        if (cell.walls.right)  { ctx.beginPath(); ctx.moveTo(x + cs, y);   ctx.lineTo(x + cs, y + cs);   ctx.stroke(); }
-        if (cell.walls.bottom) { ctx.beginPath(); ctx.moveTo(x, y + cs);   ctx.lineTo(x + cs, y + cs);   ctx.stroke(); }
-        if (cell.walls.left)   { ctx.beginPath(); ctx.moveTo(x, y);        ctx.lineTo(x, y + cs);        ctx.stroke(); }
+        if (cell.walls.top) { ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + cs, y); ctx.stroke(); }
+        if (cell.walls.right) { ctx.beginPath(); ctx.moveTo(x + cs, y); ctx.lineTo(x + cs, y + cs); ctx.stroke(); }
+        if (cell.walls.bottom) { ctx.beginPath(); ctx.moveTo(x, y + cs); ctx.lineTo(x + cs, y + cs); ctx.stroke(); }
+        if (cell.walls.left) { ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y + cs); ctx.stroke(); }
       }
     }
   }
@@ -349,6 +349,11 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(this.config()?.avatar.emoji ?? '🧒', x, y);
+  }
+
+  get isEmojiQuestion(): boolean {
+    const q = this.activeQuestion();
+    return q?.difficulty === 'gan' && q?.category === 'hebrew';
   }
 
   formatTime(s: number): string {

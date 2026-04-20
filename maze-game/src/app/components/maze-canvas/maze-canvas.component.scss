@@ -101,7 +101,7 @@
 }
 
 .question-text {
-  font-size: 1.15rem;
+  font-size: 2rem;
   margin-bottom: 1.2rem;
   line-height: 1.5;
   color: #222;
@@ -125,6 +125,12 @@
   color: #222;
 
   &:hover { background: #ede0ff; }
+
+  &.emoji-answer {
+    font-size: 7rem;
+    padding: 0.5rem;
+    line-height: 1;
+  }
 }
 
 .points-hint {

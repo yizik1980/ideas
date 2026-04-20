@@ -54,7 +54,7 @@
           <p class="question-text">{{ activeQuestion()!.question }}</p>
           <div class="answers">
             @for (ans of activeQuestion()!.answers; track $index) {
-              <button class="answer-btn" (click)="answerQuestion($index)" type="button">
+              <button class="answer-btn" [class.emoji-answer]="isEmojiQuestion" (click)="answerQuestion($index)" type="button">
                 {{ ans }}
               </button>
             }
