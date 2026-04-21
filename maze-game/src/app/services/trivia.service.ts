@@ -445,13 +445,21 @@ const QUESTIONS: TriviaQuestion[] = [
 
 @Injectable({ providedIn: 'root' })
 export class TriviaService {
+  private usedIds = new Set<number>();
+
+  resetSession(): void {
+    this.usedIds.clear();
+  }
+
   getQuestion(id: number): TriviaQuestion | undefined {
     return QUESTIONS.find(q => q.id === id);
   }
 
   getRandomQuestions(difficulty: Difficulty, category: TriviaCategory, count: number): TriviaQuestion[] {
-    const pool = QUESTIONS.filter(q => q.difficulty === difficulty && q.category === category);
+    const pool = QUESTIONS.filter(q => q.difficulty === difficulty && q.category === category && !this.usedIds.has(q.id));
     const shuffled = [...pool].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, Math.min(count, shuffled.length));
+    const picked = shuffled.slice(0, Math.min(count, shuffled.length));
+    picked.forEach(q => this.usedIds.add(q.id));
+    return picked;
   }
 }

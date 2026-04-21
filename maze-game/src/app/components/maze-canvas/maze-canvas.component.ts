@@ -75,6 +75,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
       this.router.navigate(['/']);
       return;
     }
+    this.triviaService.resetSession();
     this.loadStage(0);
     this.sound.gameStart();
     this.timerInterval = setInterval(() => {
