@@ -16,7 +16,7 @@ import { GameStateService } from '../../services/game-state.service';
 import { MazeService } from '../../services/maze.service';
 import { TriviaService } from '../../services/trivia.service';
 import { SoundService } from '../../services/sound.service';
-import { STAGE_CONFIG } from '../../const/grid';
+import { SINGLE_STEP_CONFIG, STAGE_CONFIG } from '../../const/grid';
 
 const MAX_CELL_SIZES: Record<string, number> = {
   gan: 72, '1-2': 56, '3-4': 44, '5-6': 36, '7-8': 30, '9-10': 26, '11-12': 26, university: 26,
@@ -93,8 +93,9 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private loadStage(index: number, showAnnouncement = false): void {
-    this.stageIndex = index;
-    const cfg = STAGE_CONFIG[index];
+    const isSingleStep = this.config()!.singleStep;
+    this.stageIndex = isSingleStep ? 2 : index;
+    const cfg = isSingleStep ? SINGLE_STEP_CONFIG : STAGE_CONFIG[index];
     this.rows = cfg.rows;
     this.cols = cfg.cols;
     this.playerRow = 0;
@@ -241,7 +242,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
   private checkExit(): void {
     if (this.playerRow === this.rows - 1 && this.playerCol === this.cols - 1) {
       this.inputBlocked = true;
-      if (this.stageIndex < STAGE_CONFIG.length - 1) {
+      if (this.stageIndex < STAGE_CONFIG.length - 1 && !this.config()!.singleStep) {
         this.triggerNextStage();
       } else {
         if (this.timerInterval) clearInterval(this.timerInterval);

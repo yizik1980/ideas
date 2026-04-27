@@ -13,6 +13,7 @@ export interface GameConfig {
   avatar: Avatar;
   difficulty: Difficulty;
   category: TriviaCategory;
+  singleStep: boolean;
 }
 
 export interface GameResult {

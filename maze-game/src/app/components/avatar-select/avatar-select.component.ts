@@ -24,7 +24,7 @@ export class AvatarSelectComponent {
   difficulty: Difficulty = 'gan';
   category: TriviaCategory = 'math';
   savedNames: string[] = JSON.parse(localStorage.getItem(NAMES_KEY) ?? '[]');
-
+  singleStep = false;
   difficulties: { value: Difficulty; label: string }[] = [
     { value: 'gan',        label: DIFFICULTY_LABELS['gan'] },
     { value: '1-2',        label: DIFFICULTY_LABELS['1-2'] },
@@ -59,6 +59,7 @@ export class AvatarSelectComponent {
       avatar: this.selectedAvatar,
       difficulty: this.difficulty,
       category: this.category,
+      singleStep: this.singleStep,
     });
     this.router.navigate(['/game']);
   }

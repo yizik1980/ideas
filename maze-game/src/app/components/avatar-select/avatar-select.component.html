@@ -44,18 +44,18 @@
     <div class="difficulty-grid">
       @for (d of difficulties; track d.value) {
         <label class="diff-btn" [class.selected]="difficulty === d.value">
-          <input
-            type="radio"
-            name="difficulty"
-            [value]="d.value"
-            [(ngModel)]="difficulty"
-          />
+          <input type="radio" name="difficulty" [value]="d.value" [(ngModel)]="difficulty" />
           {{ d.label }}
         </label>
       }
     </div>
   </section>
-
+  <section>
+    <label class="single-step-label">
+      <input type="checkbox" [(ngModel)]="singleStep" />
+      <span class="single-step-text">מצב קליל של מסך אחד</span>
+    </label>
+  </section>
   <section class="section">
     <h2>נושא שאלות</h2>
     <div class="category-grid">
@@ -74,12 +74,7 @@
     </div>
   </section>
 
-  <button
-    class="start-btn"
-    [disabled]="!playerName.trim()"
-    (click)="startGame()"
-    type="button"
-  >
+  <button class="start-btn" [disabled]="!playerName.trim()" (click)="startGame()" type="button">
     התחל משחק 🚀
   </button>
 </div>
