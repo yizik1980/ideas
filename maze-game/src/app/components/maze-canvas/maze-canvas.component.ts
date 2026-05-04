@@ -203,7 +203,7 @@ export class MazeCanvasComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.sound.wrongAnswer();
       this.answerResult.set('wrong');
-      if (this.stageIndex > 0) {
+      if (this.stageIndex > 0 && !this.config()!.singleStep) {
         const newWrongs = this.wrongsThisStage() + 1;
         this.wrongsThisStage.set(newWrongs);
         if (newWrongs >= MAX_WRONGS) {

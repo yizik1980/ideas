@@ -5,7 +5,7 @@ const QUESTIONS: TriviaQuestion[] = [
   // ===== גן =====
   { id:  1, difficulty: 'gan', category: 'math',    points: 1,  question: '🐸🐸🐸 כמה צפרדעים ',                   answers: ['1', '2', '3', '4'],                        correctIndex: 2 },
   { id:  2, difficulty: 'gan', category: 'math',    points: 1,  question: 'כמה תוכים יש כאן 🦜🦜🦜🦜 ',                   answers: ['3', '4', '5', '6'],                        correctIndex: 1 },
-  { id:  3, difficulty: 'gan', category: 'science', points: 1,  question: ' כמה רגליים יש לכלב🐶 ?',             answers: ['2', '4', '6', '8'],                        correctIndex: 1 },
+  { id:  3, difficulty: 'gan', category: 'math',    points: 1,  question: '🌟🌟🌟🌟 - מה המספר?',                  answers: ['3', '4', '5', '6'],                        correctIndex: 1 },
   { id:  4, difficulty: 'gan', category: 'science', points: 1,  question: 'איזה צבע הוא השמש?',              answers: ['כחול', 'ירוק', 'צהוב', 'אדום'],            correctIndex: 2 },
   { id:  5, difficulty: 'gan', category: 'science', points: 1,  question: 'מה עושים דגים במים?',             answers: ['הולכים', 'שוחים', 'עפים', 'ישנים'],        correctIndex: 1 },
   { id:  6, difficulty: 'gan', category: 'math',    points: 1,  question: 'כמה כלבים 🐶🐶🐶🐶🐶?',                   answers: ['2', '3', '4', '5'],                        correctIndex: 3 },
@@ -13,7 +13,7 @@ const QUESTIONS: TriviaQuestion[] = [
   { id:  8, difficulty: 'gan', category: 'math',    points: 1,  question: 'כמה עכברים פה 🐭🐭🐭🐭🐭🐭🐭 ?',                   answers: ['6', '5', '7', '4'],                        correctIndex: 2 },
   { id:  9, difficulty: 'gan', category: 'science', points: 1,  question: 'מה צבע הדשא?',                    answers: ['אדום', 'כחול', 'ירוק', 'צהוב'],            correctIndex: 2 },
   { id: 10, difficulty: 'gan', category: 'math',    points: 1,  question: 'כמה חתולים 🐱🐱🐱🐱🐱🐱?',                   answers: ['5', '6', '7', '8'],                        correctIndex: 1 },
-  { id: 11, difficulty: 'gan', category: 'science', points: 1,  question: 'כמה אוזניים יש לארנבת?',          answers: ['1', '2', '3', '4'],                        correctIndex: 1 },
+  { id: 11, difficulty: 'gan', category: 'math',    points: 1,  question: '🍎🍎🍎🍎🍎🍎🍎 - כמה תפוחים?',            answers: ['5', '6', '7', '8'],                        correctIndex: 2 },
   { id: 12, difficulty: 'gan', category: 'math',    points: 1,  question: '🐲🐲🐲🐲🐱🐭🐲 כמה דרקונים?',                  answers: ['5', '6', '7', '8'],                        correctIndex: 0 },
   { id: 13, difficulty: 'gan', category: 'science', points: 1,  question: 'מה בעל החיים הכי גדול?',          answers: ['פיל', 'לווייתן', 'ג׳ירפה', 'קרינוקרוס'],  correctIndex: 1 },
   { id: 14, difficulty: 'gan', category: 'math',    points: 1,  question: 'כמה זה 2 + 5?',                   answers: ['6', '7', '8', '9'],                        correctIndex: 1 },
@@ -23,6 +23,14 @@ const QUESTIONS: TriviaQuestion[] = [
   { id: 18, difficulty: 'gan', category: 'math',    points: 1,  question: 'כמה ברבורים כאן  🦢🦢🦢🦢🦋 ?',                   answers: ['3', '4', '5', '6'],                        correctIndex: 1 },
   { id: 19, difficulty: 'gan', category: 'science', points: 1,  question: 'מה עושה פרפר?',                   answers: ['שוחה', 'עף', 'קופץ', 'חופר'],              correctIndex: 1 },
   { id: 20, difficulty: 'gan', category: 'math',    points: 1,  question: 'כמה זה 1 + 4?',                   answers: ['3', '4', '5', '6'],                        correctIndex: 2 },
+  { id: 201, difficulty: 'gan', category: 'math',   points: 1,  question: '🎈🎈🎈 - מה המספר?',                 answers: ['2', '3', '4', '5'],                        correctIndex: 1 },
+  { id: 202, difficulty: 'gan', category: 'math',   points: 1,  question: '🐝🐝🐝🐝🐝🐝 - כמה דבורים?',           answers: ['4', '5', '6', '7'],                        correctIndex: 2 },
+  { id: 203, difficulty: 'gan', category: 'math',   points: 1,  question: '🌸🌸🌸🌸🌸🌸🌸🌸 - כמה פרחים?',         answers: ['6', '7', '8', '9'],                        correctIndex: 2 },
+  { id: 204, difficulty: 'gan', category: 'math',   points: 1,  question: '🍌🍌🍌🍌🍌 - מה המספר?',               answers: ['3', '4', '5', '6'],                        correctIndex: 2 },
+  { id: 205, difficulty: 'gan', category: 'math',   points: 1,  question: '🚗🚗🚗🚗🚗🚗🚗🚗🚗 - כמה מכוניות?',    answers: ['7', '8', '9', '10'],                       correctIndex: 2 },
+  { id: 206, difficulty: 'gan', category: 'math',   points: 1,  question: '⭐⭐⭐⭐⭐⭐⭐ - מה המספר?',             answers: ['5', '6', '7', '8'],                        correctIndex: 2 },
+  { id: 207, difficulty: 'gan', category: 'math',   points: 1,  question: '🍕🍕🍕🍕 - כמה פיצות?',              answers: ['3', '4', '5', '6'],                        correctIndex: 1 },
+  { id: 208, difficulty: 'gan', category: 'math',   points: 1,  question: '🦋🦋🦋🦋🦋🦋🦋🦋🦋🦋 - כמה פרפרים?', answers: ['8', '9', '10', '11'],                      correctIndex: 2 },
 
   // ===== א-ב =====
   { id: 21, difficulty: '1-2', category: 'math',    points: 1, question: 'כמה זה 5 + 7?',                   answers: ['10', '11', '12', '13'],                    correctIndex: 2 },
